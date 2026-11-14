@@ -1,668 +1,660 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>首尔 2026 · Seoul 2026</title>
+<title>Japan, 14–25 Nov 2026</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍁</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Nunito:wght@400;600;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#EDEFE9;
-  --card:#FFFFFF;
-  --ink:#16242B;
-  --ink2:#5F7076;
-  --hair:#D6DAD2;
-  --line2:#00A84D;   /* Seoul Metro Line 2 green — the line this trip lives on */
-  --line1:#0B4EA2;   /* station / transit info */
-  --flag:#E4761B;    /* booked, paid, don't-miss */
-  --radius:14px;
+  color-scheme: light;
+  /* daytime meadow */
+  --paper:#FBF6EA; --card:#FFFDF7; --ink:#3A2E28; --muted:#7A6A5E; --line:#E6DCC6;
+  --leaf:#C8553D; --leaf-soft:#F8E1D3; --leaf-mid:#EFB18F;
+  --sky:#3E7CA8; --sky-soft:#E1EFF7; --sky-mid:#A9D2EA;
+  --moss:#5E9A4C; --ok:#4E8A3E; --warn:#B5452F;
+  --sky-top:#79BDE6; --sky-mid-c:#B9E0F2; --sky-low:#F6EDD2;
+  --sun:#FFF3C4; --glow:rgba(255,236,170,.75); --cloud:#FFFFFF; --cloud-shade:#DCEAF3;
+  --hill-far:#9DBBC9; --hill-mid:#8CC06C; --hill-near:#5E9A4C; --hill-front:#47803C;
+  --tree:#3D7536; --path:#EADBB0; --house:#FBF0DC; --roof:#C8553D; --window:#F2C14E;
+  --stars:0; --shadow:rgba(90,70,50,.14);
+  --hand:"Klee One", "Comic Neue", "Segoe Print", "Hiragino Maru Gothic ProN", cursive;
+  --round:"Nunito", "Segoe UI", "Helvetica Neue", Arial, "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:"Noto Sans SC","Helvetica Neue",Arial,sans-serif;
-  font-size:15px;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  padding-bottom:calc(74px + env(safe-area-inset-bottom));
+/* night meadow */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#16192B; --card:#1F2338; --ink:#F1E9DA; --muted:#B4AA9C; --line:#33385A;
+    --leaf:#F0946F; --leaf-soft:#3A2630; --leaf-mid:#8A4A3A;
+    --sky:#9CC8EE; --sky-soft:#1F2B48; --sky-mid:#3C5A86;
+    --moss:#8CC06C; --ok:#9BD487; --warn:#F2A08A;
+    --sky-top:#0F1530; --sky-mid-c:#24315E; --sky-low:#4A4C78;
+    --sun:#F4F0DA; --glow:rgba(244,240,218,.25); --cloud:#3B4470; --cloud-shade:#2C3460;
+    --hill-far:#2D3C5E; --hill-mid:#2A4A3E; --hill-near:#203A30; --hill-front:#182E26;
+    --tree:#14261F; --path:#3E4566; --house:#3A3550; --roof:#7E3A33; --window:#FFD27A;
+    --stars:1; --shadow:rgba(0,0,0,.35);
+  }
 }
-h1,h2,h3{margin:0;font-weight:700}
-p{margin:0}
-ul{margin:0;padding:0;list-style:none}
-button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
-
-/* ---------- top bar ---------- */
-.topbar{
-  position:sticky;top:0;z-index:40;
-  background:var(--ink);color:#fff;
-  padding:10px 16px calc(10px);
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#16192B; --card:#1F2338; --ink:#F1E9DA; --muted:#B4AA9C; --line:#33385A;
+  --leaf:#F0946F; --leaf-soft:#3A2630; --leaf-mid:#8A4A3A;
+  --sky:#9CC8EE; --sky-soft:#1F2B48; --sky-mid:#3C5A86;
+  --moss:#8CC06C; --ok:#9BD487; --warn:#F2A08A;
+  --sky-top:#0F1530; --sky-mid-c:#24315E; --sky-low:#4A4C78;
+  --sun:#F4F0DA; --glow:rgba(244,240,218,.25); --cloud:#3B4470; --cloud-shade:#2C3460;
+  --hill-far:#2D3C5E; --hill-mid:#2A4A3E; --hill-near:#203A30; --hill-front:#182E26;
+  --tree:#14261F; --path:#3E4566; --house:#3A3550; --roof:#7E3A33; --window:#FFD27A;
+  --stars:1; --shadow:rgba(0,0,0,.35);
 }
-.mark{display:flex;align-items:baseline;gap:8px;min-width:0}
-.mark .zh{font-weight:700;font-size:16px;letter-spacing:.04em}
-.mark .en{
-  font-family:"Darker Grotesque",sans-serif;font-weight:800;
-  font-size:26px;line-height:1;letter-spacing:.02em;color:var(--line2);
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px);scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--round);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .35 0 0 0 0 .25 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+a{color:inherit}
+:focus-visible{outline:2.5px dashed var(--sky);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+
+/* ---------- painted hero ---------- */
+.hero{position:relative;overflow:hidden;min-height:min(92vh,720px);display:flex;flex-direction:column;justify-content:flex-start}
+.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene .s-top{stop-color:var(--sky-top)} .scene .s-mid{stop-color:var(--sky-mid-c)} .scene .s-low{stop-color:var(--sky-low)}
+.scene .sun{fill:var(--sun)} .scene .glow-stop{stop-color:var(--glow)}
+.scene .cl circle,.scene .cl ellipse.top{fill:var(--cloud)} .scene .cl ellipse.base{fill:var(--cloud-shade)}
+.scene .far{fill:var(--hill-far)} .scene .mid{fill:var(--hill-mid)} .scene .near{fill:var(--hill-near)} .scene .front{fill:var(--hill-front)}
+.scene .tree{fill:var(--tree)} .scene .trunk{fill:#6B4A33} .scene .path{fill:none;stroke:var(--path);stroke-width:22;stroke-linecap:round}
+.scene .house{fill:var(--house)} .scene .roof{fill:var(--roof)} .scene .win{fill:var(--window)}
+.scene .maple1{fill:#E0703A} .scene .maple2{fill:#C8453A} .scene .maple3{fill:#EFA040}
+.scene .stars{opacity:var(--stars)} .scene .stars circle{fill:#FFF8DC}
+.cl{animation:drift 80s linear infinite alternate}
+.cl.b{animation-duration:110s;animation-direction:alternate-reverse}
+@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+@media (prefers-reduced-motion: reduce){.cl{animation:none} html{scroll-behavior:auto}}
+.hero-text{position:relative;z-index:2;padding-top:56px;width:100%}
+.hero h1{font-family:var(--hand);font-weight:600;font-size:clamp(56px,11vw,120px);line-height:.95;margin:0;color:var(--ink);text-shadow:0 2px 0 rgba(255,255,255,.35)}
+.hero .dates{font-family:var(--hand);font-size:clamp(22px,3.4vw,32px);margin:10px 0 0}
+.hero .sub{margin:8px 0 0;font-size:16px;max-width:46ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 14px/1 var(--round);padding:12px 18px;border-radius:999px;text-decoration:none;border:2px solid var(--ink);background:var(--card);color:var(--ink);box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn svg{width:18px;height:18px}
+.btn.primary{background:var(--leaf);color:#FFFDF7;border-color:var(--ink)}
+.today-btn{display:none}
+.today-btn.show{display:inline-flex}
+
+/* ---------- route map ---------- */
+.mapcard{position:relative;z-index:3;margin:-90px auto 0;max-width:1000px;padding:0 20px}
+.map{background:var(--card);border:2px solid var(--ink);border-radius:22px 26px 20px 28px / 26px 20px 28px 22px;box-shadow:5px 6px 0 var(--shadow);padding:20px 18px 14px;overflow-x:auto}
+.map h2{font-family:var(--hand);font-weight:600;font-size:20px;margin:0 0 6px 6px}
+.map ol{list-style:none;margin:0;padding:8px 0 0;display:grid;grid-template-columns:repeat(7,minmax(86px,1fr));position:relative;min-width:620px}
+.map ol::before{content:"";position:absolute;left:43px;right:43px;top:25px;border-top:3px dashed var(--muted);opacity:.7}
+.st a{display:flex;flex-direction:column;align-items:center;text-decoration:none;gap:4px;position:relative}
+.pin{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--card);border:2.5px solid var(--ink)}
+.pin svg{width:20px;height:20px}
+.st.leaf .pin{background:var(--leaf-soft)} .st.sky .pin{background:var(--sky-soft)}
+.st-name{font-family:var(--hand);font-weight:600;font-size:18px;line-height:1.2}
+.st-n{font-size:12px;color:var(--muted)}
+.st a:hover .st-name{text-decoration:underline wavy var(--leaf);text-underline-offset:5px}
+
+/* ---------- weather now ---------- */
+.weather{padding-top:44px;padding-bottom:10px}
+.sec-title{font-family:var(--hand);font-weight:600;font-size:clamp(30px,5vw,40px);margin:0;line-height:1.15}
+.sec-lead{color:var(--muted);margin:4px 0 20px}
+.wx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:12px}
+.wx-card{background:var(--card);border:2px solid var(--ink);border-radius:18px 22px 16px 24px / 22px 16px 24px 18px;padding:12px 14px;box-shadow:3px 4px 0 var(--shadow)}
+.wx-card:nth-child(odd){background:color-mix(in srgb,var(--sky-soft) 60%,var(--card))}
+.wx-card h3{font-family:var(--hand);font-weight:600;font-size:18px;margin:0}
+.wx-now{display:flex;align-items:center;gap:8px;margin-top:4px}
+.wx-now svg{width:34px;height:34px;flex:none}
+.wx-t{font-size:30px;font-weight:700;line-height:1}
+.wx-c{font-size:12.5px;color:var(--muted);line-height:1.35;margin-top:4px}
+.wx-meta{font-size:12.5px;color:var(--muted);margin-top:12px}
+.wx-msg{grid-column:1/-1;font-size:14px;color:var(--muted);margin:0}
+
+/* ---------- sticky day nav ---------- */
+.daynav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:2px dashed var(--line);margin-top:30px}
+body:has(.daynav)::before{background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.daynav .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+.daynav .wrap::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;width:48px;height:52px;border-radius:14px 16px 12px 18px;text-decoration:none;border:2px solid transparent}
+.chip.leaf{background:var(--leaf-soft)} .chip.sky{background:var(--sky-soft)}
+.chip-d{font-family:var(--hand);font-weight:600;font-size:20px;line-height:1}
+.chip-w{font-size:11px;color:var(--muted)}
+.chip.is-today{border-color:var(--ink)}
+.navlink{flex:0 0 auto;align-self:center;font-size:13px;font-weight:700;padding:8px 12px;border-radius:999px;text-decoration:none;border:2px solid var(--line)}
+.navlink:first-of-type{margin-left:10px}
+
+/* ---------- days ---------- */
+main{padding-bottom:30px}
+.day{display:grid;grid-template-columns:190px 1fr;gap:28px;padding:46px 0;border-top:2px dashed var(--line)}
+.day:first-child{border-top:0}
+.day-head{position:sticky;top:calc(env(safe-area-inset-top,0px) + 96px);align-self:start}
+.day-num{width:96px;height:96px;display:grid;place-items:center;font-family:var(--hand);font-weight:600;font-size:52px;line-height:1;border:2.5px solid var(--ink);border-radius:52% 48% 50% 50% / 48% 54% 46% 52%;box-shadow:4px 4px 0 var(--shadow)}
+.day.leaf .day-num{background:var(--leaf-soft);color:var(--leaf)}
+.day.sky .day-num{background:var(--sky-soft);color:var(--sky)}
+.day-n{margin:14px 0 0;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.today-badge{display:none;background:var(--leaf);color:#FFFDF7;font-weight:700;font-size:11px;padding:2px 9px;border-radius:999px}
+.day.is-today .today-badge{display:inline-block}
+.day h2{font-family:var(--hand);font-weight:600;font-size:23px;line-height:1.25;margin:2px 0 0}
+.day-cities{margin:6px 0 0;font-weight:700;font-size:14px}
+.tonight{margin:12px 0 0;font-size:13px;color:var(--muted);line-height:1.45}
+.tonight-l{display:block;font-weight:700;color:var(--ink)}
+.wx-day{margin-top:14px;display:grid;gap:6px}
+.wx-pill{display:flex;align-items:center;gap:8px;font-size:13px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:6px 10px}
+.wx-pill svg{width:24px;height:24px;flex:none}
+.wx-pill b{font-weight:700}
+.wx-pill span{color:var(--muted);font-size:12px;display:block;line-height:1.25}
+
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:97px;top:12px;bottom:12px;border-left:2.5px dotted var(--muted);opacity:.6}
+.entry{display:grid;grid-template-columns:84px 1fr 38px;gap:0 22px;padding:14px 0;position:relative}
+.entry::before{content:"";position:absolute;left:90px;top:19px;width:17px;height:17px;border-radius:50% 45% 55% 50%;background:var(--card);border:2.5px solid var(--sky)}
+.day.leaf .entry::before{border-color:var(--leaf)}
+.when{font-weight:700;font-size:13px;text-align:right;padding-top:2px;font-variant-numeric:tabular-nums;line-height:1.35}
+.when .to{display:block;color:var(--muted);font-weight:400;font-size:12px;line-height:1}
+.what{padding-left:16px;min-width:0;background:var(--card);border:1.5px solid var(--line);border-radius:16px 20px 14px 22px / 20px 14px 22px 16px;padding:12px 16px}
+.e-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:4px}
+.e-city{font-family:var(--hand);font-weight:600;font-size:20px;line-height:1.25}
+.tag{font-size:12px;font-weight:700;padding:1px 10px;border-radius:999px;background:var(--leaf-soft);color:var(--leaf);border:1.5px solid currentColor}
+dl{margin:0;display:grid;gap:6px}
+.f{display:grid;grid-template-columns:104px 1fr;gap:12px}
+dt{font-size:12px;color:var(--muted);padding-top:2px}
+dd{margin:0;overflow-wrap:anywhere}
+.f.is-hotel dd{font-weight:700}
+.path{display:inline}
+.path .sep{color:var(--leaf);margin:0 6px;font-weight:700}
+.tick{width:32px;height:32px;border-radius:50%;border:2px solid var(--line);background:var(--card);cursor:pointer;display:grid;place-items:center;padding:0;margin-top:8px}
+.tick svg{width:16px;height:16px;fill:none;stroke:transparent;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.tick:hover svg{stroke:var(--muted)}
+.tick[aria-pressed="true"]{background:var(--moss);border-color:var(--ink)}
+.tick[aria-pressed="true"] svg{stroke:#FFFDF7}
+.entry.done .what,.entry.done .when{opacity:.45}
+
+/* ---------- hotels / bookings / wishlist ---------- */
+.block{padding:56px 0 6px;border-top:2px dashed var(--line)}
+.hotels{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.hotel{background:var(--card);border:2px solid var(--ink);border-radius:20px 24px 18px 26px / 24px 18px 26px 20px;padding:18px 20px;box-shadow:4px 5px 0 var(--shadow)}
+.hotel:nth-child(odd){background:color-mix(in srgb,var(--leaf-soft) 45%,var(--card))}
+.hotel:nth-child(even){background:color-mix(in srgb,var(--sky-soft) 55%,var(--card))}
+.h-dates{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--muted)}
+.h-line{flex:1;border-top:2px dotted var(--muted);opacity:.6}
+.hotel h3{font-family:var(--hand);font-weight:600;font-size:20px;line-height:1.25;margin:10px 0 2px}
+.hotel p{margin:4px 0 0;font-size:13px}
+.h-n{font-weight:700}
+.h-addr,.h-times{color:var(--muted)}
+.pay{display:inline-block;margin-top:12px !important;font-weight:700;padding:4px 10px;border-radius:10px;border:1.5px solid currentColor}
+.pay.paid{color:var(--ok)} .pay.due{color:var(--warn)}
+.drive-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0 0 18px}
+.tablewrap{overflow-x:auto;border:2px solid var(--ink);border-radius:20px 24px 18px 26px / 24px 18px 26px 20px;background:var(--card);box-shadow:4px 5px 0 var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+td{padding:14px 16px;border-top:1.5px dashed var(--line);vertical-align:top;font-size:14px}
+tr:first-child td{border-top:0}
+td p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.b-date{white-space:nowrap;width:120px}
+.b-date a{display:block;font-family:var(--hand);font-weight:600;font-size:16px;text-decoration:none}
+.b-date a:hover{text-decoration:underline wavy var(--leaf)}
+.b-date span{font-size:13px;color:var(--muted)}
+.b-ref{text-align:right;width:1%;white-space:nowrap}
+.ref{display:inline-flex;align-items:center;gap:10px;font:700 13px/1 var(--round);color:var(--ink);background:var(--paper);border:2px solid var(--ink);border-radius:10px;padding:8px 10px;cursor:pointer}
+.ref-c{font-weight:500;color:var(--sky);font-size:12px}
+.ref.copied .ref-c{color:var(--ok)}
+.wish{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.w-col{background:var(--card);border:2px solid var(--ink);border-radius:20px 24px 18px 26px / 24px 18px 26px 20px;padding:16px 18px;box-shadow:4px 5px 0 var(--shadow)}
+.w-col h3{font-family:var(--hand);font-weight:600;font-size:22px;margin:0 0 6px}
+.w-col ul{margin:0;padding:0;list-style:none}
+.w-col li{padding:9px 0;border-top:1.5px dashed var(--line);font-size:14px}
+.w-col li:first-child{border-top:0}
+
+/* ---------- footer scene ---------- */
+footer{margin-top:50px;position:relative}
+footer svg{display:block;width:100%;height:120px}
+footer .front{fill:var(--hill-near)} footer .back{fill:var(--hill-mid)}
+footer p{margin:0;padding:6px 20px 24px;text-align:center;font-size:13px;color:var(--muted)}
+
+@media (max-width:760px){
+  .hero{min-height:640px}
+  .scene .sun-g{transform:translate(40px,-100px)}
+  .hero-text{padding-top:34px}
+  .mapcard{margin-top:-70px}
+  .day{grid-template-columns:1fr;gap:18px;padding:36px 0}
+  .day-head{position:static;display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
+  .day-num{width:74px;height:74px;font-size:40px}
+  .day-meta{min-width:0}
+  .day-n{margin-top:0}
+  .timeline::before{left:71px}
+  .entry{grid-template-columns:60px 1fr 34px;gap:0 18px}
+  .entry::before{left:64px}
+  .f{grid-template-columns:1fr;gap:0}
+  .wish{grid-template-columns:1fr}
 }
-.langtoggle{display:flex;border:1px solid rgba(255,255,255,.28);border-radius:999px;overflow:hidden;flex:none}
-.langtoggle button{padding:5px 12px;font-size:13px;color:rgba(255,255,255,.6);letter-spacing:.02em}
-.langtoggle button[aria-pressed="true"]{background:var(--line2);color:#06120b;font-weight:700}
-
-/* ---------- layout ---------- */
-main{max-width:560px;margin:0 auto;padding:16px 14px 32px}
-.panel[hidden]{display:none}
-.sechead{
-  font-family:"Darker Grotesque",sans-serif;font-weight:800;
-  font-size:32px;line-height:.95;letter-spacing:.01em;margin:26px 2px 12px;
-}
-.sechead:first-child{margin-top:4px}
-.sechead .sub{display:block;font-family:"Noto Sans SC",sans-serif;font-size:13px;font-weight:400;color:var(--ink2);letter-spacing:0;margin-top:5px;line-height:1.4}
-html[lang="zh"] .sechead{font-family:"Noto Sans SC",sans-serif;font-size:21px;line-height:1.3}
-
-.card{background:var(--card);border-radius:var(--radius);padding:16px}
-.card + .card{margin-top:10px}
-
-/* ---------- hero: boarding strip ---------- */
-.strip{background:var(--ink);color:#fff;border-radius:var(--radius);overflow:hidden}
-.leg{padding:14px 16px}
-.leg + .leg{border-top:1px dashed rgba(255,255,255,.22)}
-.legtop{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.62);letter-spacing:.04em}
-.legtop b{color:var(--line2);font-weight:700}
-.route{display:flex;align-items:flex-end;gap:10px;margin-top:6px}
-.port{flex:none}
-.port .code{font-family:"Darker Grotesque",sans-serif;font-weight:800;font-size:34px;line-height:.85;letter-spacing:.02em}
-.port .term{font-size:11px;color:rgba(255,255,255,.6)}
-.port .tm{font-size:13px;font-weight:500;margin-top:3px}
-.dots{flex:1;border-bottom:1px dotted rgba(255,255,255,.4);margin:0 2px 14px;position:relative}
-.dots::after{content:"✈";position:absolute;right:-2px;top:-13px;font-size:12px;color:var(--line2)}
-.port.right{text-align:right}
-.countdown{
-  background:var(--line2);color:#06140c;padding:9px 16px;
-  font-size:13px;font-weight:700;letter-spacing:.02em;display:flex;justify-content:space-between;
-}
-
-/* ---------- info rows ---------- */
-.kv{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--hair);align-items:flex-start}
-.kv:last-child{border-bottom:none;padding-bottom:0}
-.kv:first-child{padding-top:0}
-.kv .k{flex:none;width:74px;font-size:12px;color:var(--ink2);padding-top:2px}
-.kv .v{flex:1;font-size:14px}
-
-.cardtitle{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.cardtitle .dot{width:8px;height:8px;border-radius:50%;background:var(--line2);flex:none}
-
-/* ---------- day rail ---------- */
-.day{position:relative;padding-left:46px;padding-bottom:18px}
-.day::before{content:"";position:absolute;left:15px;top:8px;bottom:-10px;width:3px;background:var(--line2)}
-.day:last-child::before{bottom:auto;height:14px}
-.stop{
-  position:absolute;left:0;top:0;width:33px;height:33px;border-radius:50%;
-  background:var(--card);border:3px solid var(--line2);
-  display:flex;align-items:center;justify-content:center;
-  font-family:"Darker Grotesque",sans-serif;font-weight:800;font-size:19px;line-height:1;
-  padding-top:2px;z-index:1;
-}
-.dayhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin-bottom:8px;min-height:33px}
-.dayhead .date{font-size:12px;color:var(--ink2);letter-spacing:.03em;width:100%;margin-top:-2px}
-.dayhead h3{font-size:17px;line-height:1.3}
-
-.plan{margin:0 0 2px}
-.plan li{position:relative;padding-left:16px;margin-bottom:6px;font-size:14px}
-.plan li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--hair)}
-.plan li b{font-weight:700}
-
-.note{
-  background:#FDF3E7;border-left:3px solid var(--flag);
-  padding:9px 12px;border-radius:0 8px 8px 0;font-size:13.5px;margin-top:10px;
-}
-.note .lab{font-size:11px;color:var(--flag);font-weight:700;letter-spacing:.05em;display:block;margin-bottom:2px}
-
-/* ---------- food ---------- */
-.foodgroup{margin-top:10px}
-.eat{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--hair)}
-.eat:last-child{border-bottom:none;padding-bottom:0}
-.eat .num{
-  flex:none;width:20px;font-family:"Darker Grotesque",sans-serif;font-weight:700;
-  font-size:19px;color:var(--hair);line-height:1.1;
-}
-.eat .body{flex:1;min-width:0}
-.eat .nm{font-size:14.5px;font-weight:500;line-height:1.35}
-.eat .alt{font-size:12.5px;color:var(--ink2)}
-.way{margin-top:5px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--line1)}
-.exit{
-  display:inline-flex;align-items:center;gap:4px;
-  background:#EAF0F9;color:var(--line1);border-radius:5px;padding:1px 7px;font-weight:700;font-size:11.5px;
-}
-.way .walk{color:var(--ink2)}
-
-/* ---------- checklists ---------- */
-.check{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--hair);align-items:flex-start;cursor:pointer;user-select:none}
-.check:last-child{border-bottom:none;padding-bottom:0}
-.box{
-  flex:none;width:19px;height:19px;border:2px solid var(--hair);border-radius:5px;margin-top:1px;
-  display:flex;align-items:center;justify-content:center;transition:background .12s,border-color .12s;
-}
-.box svg{width:11px;height:11px;opacity:0;stroke:#fff;stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.check[data-on="1"] .box{background:var(--line2);border-color:var(--line2)}
-.check[data-on="1"] .box svg{opacity:1}
-.check[data-on="1"] .txt{color:var(--ink2);text-decoration:line-through;text-decoration-color:var(--hair)}
-.txt{flex:1;font-size:14px;line-height:1.45}
-.txt small{display:block;color:var(--ink2);font-size:12px;text-decoration:none}
-.check:focus-visible{outline:2px solid var(--line1);outline-offset:3px;border-radius:6px}
-
-.progress{font-size:12px;color:var(--ink2);font-weight:400;float:right;padding-top:4px}
-
-/* ---------- bottom nav ---------- */
-.tabs{
-  position:fixed;left:0;right:0;bottom:0;z-index:50;
-  background:rgba(255,255,255,.96);backdrop-filter:blur(10px);
-  border-top:1px solid var(--hair);
-  display:flex;padding:6px 4px calc(6px + env(safe-area-inset-bottom));
-}
-.tabs button{flex:1;padding:6px 2px 4px;display:flex;flex-direction:column;align-items:center;gap:3px;border-radius:10px}
-.tabs .ic{width:22px;height:22px;stroke:var(--ink2);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.tabs .lb{font-size:11px;color:var(--ink2);letter-spacing:.02em}
-.tabs button[aria-selected="true"] .ic{stroke:var(--line2)}
-.tabs button[aria-selected="true"] .lb{color:var(--ink);font-weight:700}
-.tabs button:focus-visible{outline:2px solid var(--line1);outline-offset:-2px}
-
-.foot{text-align:center;font-size:11.5px;color:var(--ink2);padding:22px 0 4px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="mark"><span class="zh">首尔</span><span class="en">SEOUL 26</span></div>
-  <div class="langtoggle" role="group" aria-label="Language">
-    <button id="btn-zh" aria-pressed="true">中文</button>
-    <button id="btn-en" aria-pressed="false">EN</button>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-sun" viewBox="0 0 40 40"><g stroke="#E3A33B" stroke-width="2.5" stroke-linecap="round"><path d="M20 3v5M20 32v5M3 20h5M32 20h5M8 8l3.5 3.5M28.5 28.5L32 32M8 32l3.5-3.5M28.5 11.5L32 8"/></g><circle cx="20" cy="20" r="8" fill="#F7C948" stroke="#3A2E28" stroke-width="2"/></symbol>
+    <symbol id="i-part" viewBox="0 0 40 40"><circle cx="15" cy="15" r="7" fill="#F7C948" stroke="#3A2E28" stroke-width="2"/><path d="M12 31h18a6 6 0 0 0 0-12 8 8 0 0 0-15 2 5 5 0 0 0-3 10z" fill="#FFFFFF" stroke="#3A2E28" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 40 40"><path d="M10 30h20a7 7 0 0 0 0-14 9 9 0 0 0-17 2 6 6 0 0 0-3 12z" fill="#E8EEF3" stroke="#3A2E28" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-fog" viewBox="0 0 40 40"><path d="M10 22h20a6 6 0 0 0 0-12 8 8 0 0 0-15 2 5 5 0 0 0-5 10z" fill="#E8EEF3" stroke="#3A2E28" stroke-width="2" stroke-linejoin="round"/><path d="M7 28h26M11 33h18" stroke="#8B9BA7" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-rain" viewBox="0 0 40 40"><path d="M10 24h20a6 6 0 0 0 0-12 8 8 0 0 0-15 2 5 5 0 0 0-5 10z" fill="#DCE6EE" stroke="#3A2E28" stroke-width="2" stroke-linejoin="round"/><path d="M14 29l-2 5M21 29l-2 5M28 29l-2 5" stroke="#3E7CA8" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-snow" viewBox="0 0 40 40"><path d="M10 24h20a6 6 0 0 0 0-12 8 8 0 0 0-15 2 5 5 0 0 0-5 10z" fill="#FFFFFF" stroke="#3A2E28" stroke-width="2" stroke-linejoin="round"/><g fill="#7FA9C9"><circle cx="14" cy="31" r="2"/><circle cx="21" cy="34" r="2"/><circle cx="28" cy="31" r="2"/></g></symbol>
+    <symbol id="i-storm" viewBox="0 0 40 40"><path d="M10 23h20a6 6 0 0 0 0-12 8 8 0 0 0-15 2 5 5 0 0 0-5 10z" fill="#C9D3DC" stroke="#3A2E28" stroke-width="2" stroke-linejoin="round"/><path d="M21 25l-4 7h5l-3 6" fill="none" stroke="#E3A33B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24"><path d="M3 13l18-7-7 18-2.5-8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-house" viewBox="0 0 24 24"><path d="M4 11l8-6 8 6v9H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20v-5h4v5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H10l2 2.5h7.5A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="hero">
+  <svg class="scene" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" class="s-top"/><stop offset=".55" class="s-mid"/><stop offset="1" class="s-low"/>
+      </linearGradient>
+      <radialGradient id="glow"><stop offset="0" class="glow-stop"/><stop offset="1" stop-opacity="0" class="glow-stop"/></radialGradient>
+    </defs>
+    <rect width="1440" height="720" fill="url(#sky)"/>
+    <g class="stars"><circle cx="220" cy="90" r="2"/><circle cx="420" cy="60" r="1.6"/><circle cx="640" cy="34" r="2.2"/><circle cx="860" cy="70" r="1.5"/><circle cx="980" cy="160" r="1.8"/><circle cx="1300" cy="80" r="2"/><circle cx="1380" cy="210" r="1.5"/><circle cx="120" cy="220" r="1.6"/><circle cx="760" cy="200" r="1.4"/></g>
+    <g class="sun-g"><circle cx="840" cy="150" r="150" fill="url(#glow)"/>
+    <circle cx="840" cy="150" r="54" class="sun"/></g>
+    <g class="cl"><ellipse class="base" cx="300" cy="238" rx="150" ry="20"/><circle cx="210" cy="215" r="40"/><circle cx="270" cy="190" r="58"/><circle cx="345" cy="200" r="48"/><circle cx="400" cy="222" r="30"/><ellipse class="top" cx="300" cy="226" rx="140" ry="22"/></g>
+    <g class="cl b"><ellipse class="base" cx="880" cy="128" rx="120" ry="16"/><circle cx="810" cy="112" r="30"/><circle cx="862" cy="92" r="44"/><circle cx="920" cy="104" r="36"/><ellipse class="top" cx="870" cy="118" rx="110" ry="18"/></g>
+    <g class="cl"><ellipse class="base" cx="1290" cy="318" rx="110" ry="14"/><circle cx="1230" cy="304" r="26"/><circle cx="1280" cy="288" r="38"/><circle cx="1335" cy="300" r="28"/><ellipse class="top" cx="1285" cy="310" rx="100" ry="16"/></g>
+    <path class="far" d="M0 470 C160 380 300 400 420 430 C560 360 700 330 860 400 C1000 350 1160 360 1260 410 C1340 380 1400 390 1440 400 V720 H0Z"/>
+    <path class="mid" d="M0 540 C200 470 380 500 560 520 C760 460 960 470 1140 510 C1280 480 1380 490 1440 500 V720 H0Z"/>
+    <g>
+      <rect class="trunk" x="296" y="505" width="7" height="22"/><circle class="maple1" cx="300" cy="494" r="22"/><circle class="maple2" cx="316" cy="503" r="14"/>
+      <rect class="trunk" x="1006" y="478" width="7" height="22"/><circle class="maple3" cx="1010" cy="468" r="20"/><circle class="maple1" cx="996" cy="478" r="13"/>
+      <rect class="trunk" x="1196" y="488" width="6" height="20"/><circle class="maple2" cx="1200" cy="478" r="17"/>
+    </g>
+    <path class="near" d="M0 600 C220 550 420 570 620 600 C820 560 1040 560 1220 590 C1330 575 1400 580 1440 585 V720 H0Z"/>
+    <g transform="translate(-250 0)"><path class="path" d="M640 720 C660 670 700 640 780 612 C850 590 900 586 960 582"/>
+    <g>
+      <rect class="house" x="930" y="540" width="64" height="44" rx="3"/>
+      <path class="roof" d="M920 544 L962 512 L1004 544 Z"/>
+      <rect class="win" x="944" y="552" width="12" height="12" rx="2"/><rect class="win" x="968" y="552" width="12" height="12" rx="2"/>
+      <rect class="trunk" x="1052" y="550" width="8" height="34"/><circle class="tree" cx="1056" cy="534" r="28"/><circle class="tree" cx="1078" cy="548" r="18"/></g></g><g>
+      <rect class="trunk" x="180" y="568" width="8" height="30"/><circle class="tree" cx="184" cy="552" r="26"/>
+      <rect class="trunk" x="460" y="574" width="7" height="24"/><circle class="maple1" cx="463" cy="560" r="20"/>
+    </g>
+    <path class="front" d="M0 664 C240 630 520 650 760 672 C1000 640 1240 646 1440 660 V720 H0Z"/>
+  </svg>
+  <div class="wrap hero-text">
+    <h1>Japan</h1>
+    <p class="dates">14–25 November 2026</p>
+    <p class="sub">Kobe, Arima, Kyoto, Nara and Osaka. Twelve days, eleven nights, five hotels.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="https://drive.google.com/drive/folders/1gdzQFFJ6HC11Gvwun3PgRd-BJDPJu1hH?usp=sharing" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-folder"/></svg>Itinerary &amp; tickets folder</a>
+      <a class="btn today-btn" id="todayBtn" href="#day-1">Go to today</a>
+    </div>
   </div>
 </header>
 
-<main>
-  <section class="panel" id="p-trip"></section>
-  <section class="panel" id="p-food" hidden></section>
-  <section class="panel" id="p-pack" hidden></section>
-  <section class="panel" id="p-shop" hidden></section>
-  <p class="foot" id="foot"></p>
+<div class="mapcard">
+  <nav class="map" aria-label="Route">
+    <h2>Our route</h2>
+    <ol><li class="st fly"><a href="#day-1"><span class="pin"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><span class="st-name">Singapore</span><span class="st-n">&nbsp;</span></a></li><li class="st leaf"><a href="#day-1"><span class="pin"><svg aria-hidden="true"><use href="#i-house"/></svg></span><span class="st-name">Kobe</span><span class="st-n">1 night</span></a></li><li class="st sky"><a href="#day-2"><span class="pin"><svg aria-hidden="true"><use href="#i-house"/></svg></span><span class="st-name">Arima</span><span class="st-n">1 night</span></a></li><li class="st leaf"><a href="#day-3"><span class="pin"><svg aria-hidden="true"><use href="#i-house"/></svg></span><span class="st-name">Kyoto</span><span class="st-n">3 nights</span></a></li><li class="st sky"><a href="#day-6"><span class="pin"><svg aria-hidden="true"><use href="#i-house"/></svg></span><span class="st-name">Nara</span><span class="st-n">2 nights</span></a></li><li class="st leaf"><a href="#day-8"><span class="pin"><svg aria-hidden="true"><use href="#i-house"/></svg></span><span class="st-name">Osaka</span><span class="st-n">4 nights</span></a></li><li class="st fly"><a href="#day-12"><span class="pin"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><span class="st-name">Singapore</span><span class="st-n">&nbsp;</span></a></li></ol>
+  </nav>
+</div>
+
+<section class="wrap weather" id="weather" aria-live="polite">
+  <h2 class="sec-title">Weather right now</h2>
+  <p class="sec-lead">Live temperatures in each place we’re visiting, from Open-Meteo. Each day below shows its own forecast.</p>
+  <div class="wx-grid" id="wxGrid"><p class="wx-msg">Loading the weather…</p></div>
+  <p class="wx-meta" id="wxMeta"></p>
+</section>
+
+<nav class="daynav" aria-label="Days">
+  <div class="wrap"><a class="chip leaf" href="#day-1" data-day="1"><span class="chip-d">14</span><span class="chip-w">Sat</span></a><a class="chip sky" href="#day-2" data-day="2"><span class="chip-d">15</span><span class="chip-w">Sun</span></a><a class="chip leaf" href="#day-3" data-day="3"><span class="chip-d">16</span><span class="chip-w">Mon</span></a><a class="chip sky" href="#day-4" data-day="4"><span class="chip-d">17</span><span class="chip-w">Tue</span></a><a class="chip leaf" href="#day-5" data-day="5"><span class="chip-d">18</span><span class="chip-w">Wed</span></a><a class="chip sky" href="#day-6" data-day="6"><span class="chip-d">19</span><span class="chip-w">Thu</span></a><a class="chip leaf" href="#day-7" data-day="7"><span class="chip-d">20</span><span class="chip-w">Fri</span></a><a class="chip sky" href="#day-8" data-day="8"><span class="chip-d">21</span><span class="chip-w">Sat</span></a><a class="chip leaf" href="#day-9" data-day="9"><span class="chip-d">22</span><span class="chip-w">Sun</span></a><a class="chip sky" href="#day-10" data-day="10"><span class="chip-d">23</span><span class="chip-w">Mon</span></a><a class="chip leaf" href="#day-11" data-day="11"><span class="chip-d">24</span><span class="chip-w">Tue</span></a><a class="chip sky" href="#day-12" data-day="12"><span class="chip-d">25</span><span class="chip-w">Wed</span></a><a class="navlink" href="#hotels">Hotels</a><a class="navlink" href="#bookings">Bookings</a><a class="navlink" href="#wishlist">Wishlist</a></div>
+</nav>
+
+<main class="wrap">
+  
+<section class="day leaf" id="day-1" data-date="2026-11-14">
+  <header class="day-head">
+    <div class="day-num">14</div>
+    <div class="day-meta">
+      <p class="day-n">Day 1 of 12<span class="today-badge">Today</span></p>
+      <h2>Saturday, 14 November</h2>
+      <p class="day-cities">Singapore - OSAKA / OSAKA Airport - OSAKA station / OSAKA - KOBE</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> Hotel Viamare Kobe</p>
+      <div class="wx-day" data-date="2026-11-14" data-places="kobe"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d1e0"><div class="when">2:25 PM<span class="to">–</span>9:25 PM</div><div class="what"><div class="e-head"><span class="e-city">Singapore - OSAKA</span></div><dl><div class="f notes"><dt>Notes</dt><dd>SQ 622</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d1e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d1e1"><div class="when"></div><div class="what"><div class="e-head"><span class="e-city">OSAKA Airport - OSAKA station</span></div><dl><div class="f tr"><dt>Transport</dt><dd>Terminal 1 level 1 bus No 6 from Airport to Kobe Sannomiya (Limousine Bus)</dd></div><div class="f price"><dt>Price</dt><dd>Yen 2,200</dd></div><div class="f notes"><dt>Notes</dt><dd>1.15hour ( walk to hotel)</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d1e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d1e2"><div class="when"></div><div class="what"><div class="e-head"><span class="e-city">OSAKA - KOBE</span></div><dl><div class="f tr"><dt>Transport</dt><dd>Osaka station - Sannomiya station (JR)<br>Umeda - Kobe Sannomiya station</dd></div><div class="f price"><dt>Price</dt><dd>$410-600<br>$320-400</dd></div><div class="f notes"><dt>Notes</dt><dd>JR 20-30min (last train 12.04am)<br>Hankyu 30-40min<br>taxi</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d1e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d1e3"><div class="when"></div><div class="what"><dl><div class="f acc is-hotel"><dt>Accommodation</dt><dd>Hotel Viamare Kobe, ６７-2 Kyomachi, Chuo Ward, Kobe, Hyogo 650-0034, Japan</dd></div><div class="f price"><dt>Price</dt><dd>(AGODA - SGD 222.29 PAID)</dd></div><div class="f notes"><dt>Notes</dt><dd>check in 2pm check out 11am</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d1e3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day sky" id="day-2" data-date="2026-11-15">
+  <header class="day-head">
+    <div class="day-num">15</div>
+    <div class="day-meta">
+      <p class="day-n">Day 2 of 12<span class="today-badge">Today</span></p>
+      <h2>Sunday, 15 November</h2>
+      <p class="day-cities">KOBE / ARIMA</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> Arima onsen tocen goshobo</p>
+      <div class="wx-day" data-date="2026-11-15" data-places="kobe,arima"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d2e0"><div class="when">9 AM<span class="to">–</span>3 PM</div><div class="what"><div class="e-head"><span class="e-city">KOBE</span></div><dl><div class="f price"><dt>Price</dt><dd>0</dd></div><div class="f notes"><dt>Notes</dt><dd><span class="path"><span>RIKI (bread)</span><span class="sep" aria-hidden="true">›</span><span>面包超人博物馆(10am)</span><span class="sep" aria-hidden="true">›</span><span>美利坚公园</span><span class="sep" aria-hidden="true">›</span><span>cafe &amp;bar anthem(纱布芝士</span><span class="sep" aria-hidden="true">›</span><span>生田神</span><span class="sep" aria-hidden="true">›</span><span>麺屋 鯖の上にも三年(fish ramen)</span><span class="sep" aria-hidden="true">›</span><span>北野异人管/街,天马神社</span></span></dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d2e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d2e1"><div class="when">3 PM<span class="to">–</span>4 PM</div><div class="what"><div class="e-head"><span class="e-city">KOBE</span></div><dl><div class="f notes"><dt>Notes</dt><dd>hotel to sannomiya station</dd></div><div class="f rest"><dt>Restaurant</dt><dd>rond surce （café）,Mouriya （beef）,Ishida(beef),Kobe Rokko Farm Café (Icecream),Kobe Kitano Kazamidori selection風见鶏本铺 （手信)</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d2e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d2e2"><div class="when">4 PM<span class="to">–</span>4:30 PM</div><div class="what"><div class="e-head"><span class="e-city">ARIMA</span><span class="tag">Onsen</span></div><dl><div class="f tr"><dt>Transport</dt><dd>Sannomiya station-Arima (BUS)</dd></div><div class="f price"><dt>Price</dt><dd>$600-780</dd></div><div class="f notes"><dt>Notes</dt><dd>bus 25-30min</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d2e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d2e3"><div class="when">8 PM<span class="to">–</span>9 PM</div><div class="what"><dl><div class="f price"><dt>Price</dt><dd>5,500</dd></div><div class="f notes"><dt>Notes</dt><dd>SHOFU spring Reserved <br>Dinner included</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d2e3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d2e4"><div class="when"></div><div class="what"><div class="e-head"><span class="e-city">ARIMA</span></div><dl><div class="f acc is-hotel"><dt>Accommodation</dt><dd>Arima onsen tocen goshobo, 858 Arimacho, Kita Ward, Kobe, Hyogo 651-1401, Japan</dd></div><div class="f price"><dt>Price</dt><dd>Bookings to paid on 5 Nov</dd></div><div class="f notes"><dt>Notes</dt><dd>check in 3pm check out 10am</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d2e4"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day leaf" id="day-3" data-date="2026-11-16">
+  <header class="day-head">
+    <div class="day-num">16</div>
+    <div class="day-meta">
+      <p class="day-n">Day 3 of 12<span class="today-badge">Today</span></p>
+      <h2>Monday, 16 November</h2>
+      <p class="day-cities">ARIMA / KOBE / KYOTO</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> Keio Prelia Hotel Kyoto Karasuma Gojo</p>
+      <div class="wx-day" data-date="2026-11-16" data-places="arima,kobe,kyoto"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d3e0"><div class="when">9 AM<span class="to">–</span>1 PM</div><div class="what"><div class="e-head"><span class="e-city">ARIMA</span></div><dl><div class="f price"><dt>Price</dt><dd>0</dd></div><div class="f notes"><dt>Notes</dt><dd>10am check out ARIMA walk walk</dd></div><div class="f rest"><dt>Restaurant</dt><dd>吉高屋（护手霜润唇膏手信）milk icre cream &amp; wine mantou <br>香心堂（线香）元祖 三津森本店</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d3e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d3e1"><div class="when">1 PM<span class="to">–</span>5 PM</div><div class="what"><div class="e-head"><span class="e-city">KOBE</span></div><dl><div class="f tr"><dt>Transport</dt><dd>Arima - Sannomiya station (BUS)</dd></div><div class="f notes"><dt>Notes</dt><dd>lunch &amp; walk walk</dd></div><div class="f rest"><dt>Restaurant</dt><dd>Kobe Beef Yakiniku Okatora Sannomiya, 2 Chome-2-8 Kitanagasadori, Chuo Ward, Kobe, Hyogo 650-0012, Japan <br>神户牛烧肉 加虎 三宫店 near sannomiya station (11am*aapm)</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d3e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d3e2"><div class="when">5 PM<span class="to">–</span>6 PM</div><div class="what"><div class="e-head"><span class="e-city">KYOTO</span></div><dl><div class="f tr"><dt>Transport</dt><dd>Sannomiya station- Kyoto JR</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d3e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d3e3"><div class="when">6 PM<span class="to">–</span>6:30 PM</div><div class="what"><dl><div class="f tr"><dt>Transport</dt><dd>Kyoto Karasuma - Gojo (subway 1 stop)</dd></div><div class="f notes"><dt>Notes</dt><dd>Oden klep (730pm reserved K2UG3Y) 7min from hotel</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d3e3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d3e4"><div class="when"></div><div class="what"><div class="e-head"><span class="e-city">KYOTO</span></div><dl><div class="f tr"><dt>Transport</dt><dd>Exit 2 walk 4 mins</dd></div><div class="f acc is-hotel"><dt>Accommodation</dt><dd>Keio Prelia Hotel Kyoto Karasuma Gojo</dd></div><div class="f price"><dt>Price</dt><dd>Bookings to paid on 30 Oct</dd></div><div class="f notes"><dt>Notes</dt><dd>check in 3pm check out 11am</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d3e4"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day sky" id="day-4" data-date="2026-11-17">
+  <header class="day-head">
+    <div class="day-num">17</div>
+    <div class="day-meta">
+      <p class="day-n">Day 4 of 12<span class="today-badge">Today</span></p>
+      <h2>Tuesday, 17 November</h2>
+      <p class="day-cities">KYOTO - Uji</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> Keio Prelia Hotel Kyoto Karasuma Gojo</p>
+      <div class="wx-day" data-date="2026-11-17" data-places="kyoto"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d4e0"><div class="when">9 AM<span class="to">–</span>9:34 AM</div><div class="what"><div class="e-head"><span class="e-city">KYOTO - Uji</span></div><dl><div class="f notes"><dt>Notes</dt><dd>34min walk from hotel</dd></div><div class="f rest"><dt>Restaurant</dt><dd><span class="path"><span>清水寺</span><span class="sep" aria-hidden="true">›</span><span>Otowa Saryo （10am-pm）</span></span></dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d4e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d4e1"><div class="when">11:30 AM<span class="to">–</span>12:30 PM</div><div class="what"><dl><div class="f tr"><dt>Transport</dt><dd>351-16 Masuya-cho, Higashiyama-ku, Kyoto City, Kyoto Prefecture 605-0826</dd></div><div class="f notes"><dt>Notes</dt><dd>Shimizu main store ID : 261117-25983 reserved</dd></div><div class="f rest"><dt>Restaurant</dt><dd><span class="path"><span>Sannenzaka 産寧坂（三年坂)</span><span class="sep" aria-hidden="true">›</span><span>八坂神社 Yasaka Shrine</span><span class="sep" aria-hidden="true">›</span><span>花見小路</span></span></dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d4e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d4e2"><div class="when"></div><div class="what"><dl><div class="f price"><dt>Price</dt><dd>880</dd></div><div class="f rest"><dt>Restaurant</dt><dd>Fufu Restaurant</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d4e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d4e3"><div class="when">4 PM<span class="to">–</span>4:30 PM</div><div class="what"><dl><div class="f tr"><dt>Transport</dt><dd>Gion-Shijo Station - Fushimi-Inari Station (21min)</dd></div><div class="f notes"><dt>Notes</dt><dd>Menya Yukou/Sumiyagura/</dd></div><div class="f rest"><dt>Restaurant</dt><dd>伏见稻荷大社**</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d4e3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d4e4"><div class="when">6 PM<span class="to">–</span>6:30 PM</div><div class="what"><dl><div class="f tr"><dt>Transport</dt><dd>Fushimi-Inari Station - Sanjo Station (22min)</dd></div><div class="f acc is-hotel"><dt>Accommodation</dt><dd>Keio Prelia Hotel Kyoto Karasuma Gojo</dd></div><div class="f notes"><dt>Notes</dt><dd>(23min walk from hotel)</dd></div><div class="f rest"><dt>Restaurant</dt><dd>先斗町 (Pontocho Shabu-shabu Sukiyaki Kiraku /Kushiyaki Manten Pontocho Branch) dinner</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d4e4"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day leaf" id="day-5" data-date="2026-11-18">
+  <header class="day-head">
+    <div class="day-num">18</div>
+    <div class="day-meta">
+      <p class="day-n">Day 5 of 12<span class="today-badge">Today</span></p>
+      <h2>Wednesday, 18 November</h2>
+      <p class="day-cities">KYOTO - ARASHIYAMA</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> Keio Prelia Hotel Kyoto Karasuma Gojo</p>
+      <div class="wx-day" data-date="2026-11-18" data-places="arashiyama,kyoto"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d5e0"><div class="when">8 AM<span class="to">–</span>9 AM</div><div class="what"><div class="e-head"><span class="e-city">KYOTO - ARASHIYAMA</span><span class="tag">Arashimaya</span></div><dl><div class="f tr"><dt>Transport</dt><dd>10min walk from hotel</dd></div><div class="f price"><dt>Price</dt><dd>0</dd></div><div class="f rest"><dt>Restaurant</dt><dd>M&amp;Maison fish breakfast</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d5e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d5e1"><div class="when">9:30 AM<span class="to">–</span>10 AM</div><div class="what"><dl><div class="f tr"><dt>Transport</dt><dd>walk 16 - Kyoto station - Saga-Arashiyama Station(JR)</dd></div><div class="f acc"><dt>Accommodation</dt><dd>(total 33min)</dd></div><div class="f notes"><dt>Notes</dt><dd>sagano romantic train</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d5e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d5e2"><div class="when">11:02 AM<span class="to">–</span>11:25 AM</div><div class="what"><div class="e-head"><span class="tag">Sagano Train</span></div><dl><div class="f tr"><dt>Transport</dt><dd>小火车嵯峨 - 小火车龟冈</dd></div><div class="f price"><dt>Price</dt><dd>JPY 1,760</dd></div><div class="f notes"><dt>Notes</dt><dd>富贵5号车厢-2A 富贵5号车厢-2B 订单号: I-261018-1416269</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d5e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d5e3"><div class="when">2:30 PM<span class="to">–</span>2:56 PM</div><div class="what"><dl><div class="f tr"><dt>Transport</dt><dd>小火车龟冈 - 小火车嵯峨</dd></div><div class="f acc"><dt>Accommodation</dt><dd>3mins walk to tofu ramen</dd></div><div class="f price"><dt>Price</dt><dd>JPY 1,760</dd></div><div class="f notes"><dt>Notes</dt><dd>2号车厢-14A 2号车厢-14B 订单号: I-261018-1416678</dd></div><div class="f rest"><dt>Restaurant</dt><dd>Sagano-yu tofu ramen (6pm close)/Kijurou牛肉盒饭</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d5e3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d5e4"><div class="when">4 PM<span class="to">–</span>4:30 PM</div><div class="what"><dl><div class="f tr"><dt>Transport</dt><dd>Arashiyama Nakaoshitacho</dd></div><div class="f notes"><dt>Notes</dt><dd>VJXRPH 嵐山祐斎亭 (reserved)</dd></div><div class="f rest"><dt>Restaurant</dt><dd><span class="path"><span>Miffy Kitchen</span><span class="sep" aria-hidden="true">›</span><span>嵐山祐斎亭（walk from station 21min)，竹林散步，</span></span></dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d5e4"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d5e5"><div class="when"></div><div class="what"><dl><div class="f acc is-hotel"><dt>Accommodation</dt><dd>Keio Prelia Hotel Kyoto Karasuma Gojo</dd></div><div class="f rest"><dt>Restaurant</dt><dd>Yakiniku Yazawa Kyoto (10min walk from hotel)</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d5e5"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day sky" id="day-6" data-date="2026-11-19">
+  <header class="day-head">
+    <div class="day-num">19</div>
+    <div class="day-meta">
+      <p class="day-n">Day 6 of 12<span class="today-badge">Today</span></p>
+      <h2>Thursday, 19 November</h2>
+      <p class="day-cities">KYOTO / NARA</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> Iroha Grand Hotel Kintetsu Nara</p>
+      <div class="wx-day" data-date="2026-11-19" data-places="kyoto,nara"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d6e0"><div class="when">9 AM<span class="to">–</span>6 PM</div><div class="what"><div class="e-head"><span class="e-city">KYOTO</span></div><dl><div class="f price"><dt>Price</dt><dd>0</dd></div><div class="f rest"><dt>Restaurant</dt><dd><span class="path"><span>和服</span><span class="sep" aria-hidden="true">›</span><span>三千园</span><span class="sep" aria-hidden="true">›</span><span>貴船神社 (Kifune Shrine)</span></span></dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d6e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d6e1"><div class="when"></div><div class="what"><dl><div class="f rest"><dt>Restaurant</dt><dd>Salon de Muge 11.30-5pm</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d6e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d6e2"><div class="when"></div><div class="what"><div class="e-head"><span class="e-city">NARA</span></div><dl></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d6e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d6e3"><div class="when">8:30 PM</div><div class="what"><dl><div class="f tr"><dt>Transport</dt><dd>Kyoto Station - Kintetsu-Nara Station (4 stops) walk 3 min arrive at hotel</dd></div><div class="f acc is-hotel"><dt>Accommodation</dt><dd>Iroha Grand Hotel Kintetsu Nara</dd></div><div class="f price"><dt>Price</dt><dd>Bookings SGD 232.10 Paid</dd></div><div class="f notes"><dt>Notes</dt><dd>check in 2pm check out 11am</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d6e3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day leaf" id="day-7" data-date="2026-11-20">
+  <header class="day-head">
+    <div class="day-num">20</div>
+    <div class="day-meta">
+      <p class="day-n">Day 7 of 12<span class="today-badge">Today</span></p>
+      <h2>Friday, 20 November</h2>
+      <p class="day-cities">Uji</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> Iroha Grand Hotel Kintetsu Nara</p>
+      <div class="wx-day" data-date="2026-11-20" data-places="uji,nara"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d7e0"><div class="when">9:30 AM<span class="to">–</span>11 AM</div><div class="what"><div class="e-head"><span class="e-city">Uji</span></div><dl><div class="f tr"><dt>Transport</dt><dd>12min walk from hotel - Nara Station  - Uji station (38min)</dd></div><div class="f acc"><dt>Accommodation</dt><dd>total 50min</dd></div><div class="f notes"><dt>Notes</dt><dd>Nakamura Tokichi Main Branch (10am-5.30pm)</dd></div><div class="f rest"><dt>Restaurant</dt><dd><span class="path"><span>Byōdo-in Temple</span><span class="sep" aria-hidden="true">›</span><span>宇治神社Uji Shrine</span></span></dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d7e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d7e1"><div class="when"></div><div class="what"><dl><div class="f tr"><dt>Transport</dt><dd>Uji station - Nara Station</dd></div><div class="f acc"><dt>Accommodation</dt><dd>13min walk from station</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d7e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d7e2"><div class="when"></div><div class="what"><dl><div class="f acc is-hotel"><dt>Accommodation</dt><dd>Iroha Grand Hotel Kintetsu Nara</dd></div><div class="f notes"><dt>Notes</dt><dd>check in 2pm check out 11am</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d7e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day sky" id="day-8" data-date="2026-11-21">
+  <header class="day-head">
+    <div class="day-num">21</div>
+    <div class="day-meta">
+      <p class="day-n">Day 8 of 12<span class="today-badge">Today</span></p>
+      <h2>Saturday, 21 November</h2>
+      <p class="day-cities">NARA / OSAKA</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> The Lively Osaka Honmachi</p>
+      <div class="wx-day" data-date="2026-11-21" data-places="nara,osaka"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d8e0"><div class="when">9 AM<span class="to">–</span>6 PM</div><div class="what"><div class="e-head"><span class="e-city">NARA</span></div><dl><div class="f acc"><dt>Accommodation</dt><dd>10min walk from hotel</dd></div><div class="f rest"><dt>Restaurant</dt><dd><span class="path"><span>Nara park</span><span class="sep" aria-hidden="true">›</span><span>Kasugataisha Shrine春日大社</span><span class="sep" aria-hidden="true">›</span><span>Nigatsu-do二月堂</span><span class="sep" aria-hidden="true">›</span><span>Tōdai-ji 東大寺</span></span></dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d8e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d8e1"><div class="when"></div><div class="what"><dl><div class="f rest"><dt>Restaurant</dt><dd>Naramachi 奈良町 （18min to hotel）</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d8e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d8e2"><div class="when">6 PM<span class="to">–</span>7 PM</div><div class="what"><div class="e-head"><span class="e-city">OSAKA</span></div><dl><div class="f tr"><dt>Transport</dt><dd>Kintetsu-Nara Station - Kintetsu-Nippombashi Station<br>Nippombashi Station - Sakaisuji Hommachi Station</dd></div><div class="f acc is-hotel"><dt>Accommodation</dt><dd>The Lively Osaka Honmachi</dd></div><div class="f price"><dt>Price</dt><dd>Bookings to paid on 16 Nov</dd></div><div class="f notes"><dt>Notes</dt><dd>check in 3pm check out 11 am</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d8e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day leaf" id="day-9" data-date="2026-11-22">
+  <header class="day-head">
+    <div class="day-num">22</div>
+    <div class="day-meta">
+      <p class="day-n">Day 9 of 12<span class="today-badge">Today</span></p>
+      <h2>Sunday, 22 November</h2>
+      <p class="day-cities">OSAKA</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> The Lively Osaka Honmachi</p>
+      <div class="wx-day" data-date="2026-11-22" data-places="osaka"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d9e0"><div class="when"></div><div class="what"><div class="e-head"><span class="e-city">OSAKA</span></div><dl><div class="f notes"><dt>Notes</dt><dd>Dekasan (beef sandwich)</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d9e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d9e1"><div class="when">6:30 PM<span class="to">–</span>8:30 PM</div><div class="what"><dl><div class="f acc"><dt>Accommodation</dt><dd>sushi senzu honten</dd></div><div class="f notes"><dt>Notes</dt><dd>omakse  (Dinner booked MPAQSZS73K)</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d9e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d9e2"><div class="when"></div><div class="what"><dl><div class="f acc is-hotel"><dt>Accommodation</dt><dd>The Lively Osaka Honmachi</dd></div><div class="f notes"><dt>Notes</dt><dd>check in 3pm check out 11 am</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d9e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day sky" id="day-10" data-date="2026-11-23">
+  <header class="day-head">
+    <div class="day-num">23</div>
+    <div class="day-meta">
+      <p class="day-n">Day 10 of 12<span class="today-badge">Today</span></p>
+      <h2>Monday, 23 November</h2>
+      <p class="day-cities">OSAKA</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> The Lively Osaka Honmachi</p>
+      <div class="wx-day" data-date="2026-11-23" data-places="osaka"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d10e0"><div class="when"></div><div class="what"><div class="e-head"><span class="e-city">OSAKA</span></div><dl></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d10e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d10e1"><div class="when">4:30 PM<span class="to">–</span>6 PM</div><div class="what"><div class="e-head"><span class="tag">street kart</span></div><dl><div class="f notes"><dt>Notes</dt><dd>Street Kart Osaka Shop<br>1-14-19 Minamihorie, Nishi Ward, Osaka, 550-0015, Japan</dd></div><div class="f rest"><dt>Restaurant</dt><dd>**Original International Driving Permits and the Original Passports</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d10e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d10e2"><div class="when"></div><div class="what"><dl><div class="f acc is-hotel"><dt>Accommodation</dt><dd>The Lively Osaka Honmachi</dd></div><div class="f notes"><dt>Notes</dt><dd>check in 3pm check out 11 am</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d10e2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day leaf" id="day-11" data-date="2026-11-24">
+  <header class="day-head">
+    <div class="day-num">24</div>
+    <div class="day-meta">
+      <p class="day-n">Day 11 of 12<span class="today-badge">Today</span></p>
+      <h2>Tuesday, 24 November</h2>
+      <p class="day-cities">OSAKA</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> The Lively Osaka Honmachi</p>
+      <div class="wx-day" data-date="2026-11-24" data-places="osaka"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d11e0"><div class="when"></div><div class="what"><div class="e-head"><span class="e-city">OSAKA</span></div><dl><div class="f price"><dt>Price</dt><dd>rm1904</dd></div><div class="f notes"><dt>Notes</dt><dd>USJ</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d11e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d11e1"><div class="when"></div><div class="what"><dl><div class="f acc is-hotel"><dt>Accommodation</dt><dd>The Lively Osaka Honmachi</dd></div><div class="f notes"><dt>Notes</dt><dd>check in 3pm check out 11 am</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d11e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+<section class="day sky" id="day-12" data-date="2026-11-25">
+  <header class="day-head">
+    <div class="day-num">25</div>
+    <div class="day-meta">
+      <p class="day-n">Day 12 of 12<span class="today-badge">Today</span></p>
+      <h2>Wednesday, 25 November</h2>
+      <p class="day-cities">OSAKA / OSAKA - Singapore</p>
+      <p class="tonight"><span class="tonight-l">Tonight</span> Home to Singapore</p>
+      <div class="wx-day" data-date="2026-11-25" data-places="osaka"></div>
+    </div>
+  </header>
+  <ol class="timeline"><li class="entry" data-id="d12e0"><div class="when"></div><div class="what"><div class="e-head"><span class="e-city">OSAKA</span></div><dl></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d12e0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li><li class="entry" data-id="d12e1"><div class="when">4:50 PM<span class="to">–</span>10:40 PM</div><div class="what"><div class="e-head"><span class="e-city">OSAKA - Singapore</span></div><dl><div class="f notes"><dt>Notes</dt><dd>SQ 621</dd></div></dl></div><button class="tick" type="button" aria-pressed="false" aria-label="Mark as done" data-id="d12e1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7"/></svg></button></li></ol>
+</section>
+
+  <section class="block" id="hotels">
+    <h2 class="sec-title">Hotels</h2>
+    <p class="sec-lead">Where we sleep each night, with payment notes as written in the plan.</p>
+    <ul class="hotels"><li class="hotel">
+  <div class="h-dates"><span>Sat 14 Nov</span><span class="h-line"></span><span>Sun 15 Nov</span></div>
+  <h3>Hotel Viamare Kobe</h3>
+  <p class="h-n">1 night</p>
+  <p class="h-addr">６７-2 Kyomachi, Chuo Ward, Kobe, Hyogo 650-0034, Japan</p>
+  <p class="h-times">check in 2pm check out 11am</p>
+  <p class="pay paid">(AGODA - SGD 222.29 PAID)</p>
+</li><li class="hotel">
+  <div class="h-dates"><span>Sun 15 Nov</span><span class="h-line"></span><span>Mon 16 Nov</span></div>
+  <h3>Arima onsen tocen goshobo</h3>
+  <p class="h-n">1 night</p>
+  <p class="h-addr">858 Arimacho, Kita Ward, Kobe, Hyogo 651-1401, Japan</p>
+  <p class="h-times">check in 3pm check out 10am</p>
+  <p class="pay due">Bookings to paid on 5 Nov</p>
+</li><li class="hotel">
+  <div class="h-dates"><span>Mon 16 Nov</span><span class="h-line"></span><span>Thu 19 Nov</span></div>
+  <h3>Keio Prelia Hotel Kyoto Karasuma Gojo</h3>
+  <p class="h-n">3 nights</p>
+  
+  <p class="h-times">check in 3pm check out 11am</p>
+  <p class="pay due">Bookings to paid on 30 Oct</p>
+</li><li class="hotel">
+  <div class="h-dates"><span>Thu 19 Nov</span><span class="h-line"></span><span>Sat 21 Nov</span></div>
+  <h3>Iroha Grand Hotel Kintetsu Nara</h3>
+  <p class="h-n">2 nights</p>
+  
+  <p class="h-times">check in 2pm check out 11am</p>
+  <p class="pay paid">Bookings SGD 232.10 Paid</p>
+</li><li class="hotel">
+  <div class="h-dates"><span>Sat 21 Nov</span><span class="h-line"></span><span>Wed 25 Nov</span></div>
+  <h3>The Lively Osaka Honmachi</h3>
+  <p class="h-n">4 nights</p>
+  
+  <p class="h-times">check in 3pm check out 11 am</p>
+  <p class="pay due">Bookings to paid on 16 Nov</p>
+</li></ul>
+  </section>
+
+  <section class="block" id="bookings">
+    <h2 class="sec-title">Bookings</h2>
+    <p class="sec-lead">Reservations and reference numbers. Tap a reference to copy it.</p>
+    <div class="drive-row">
+      <a class="btn primary" href="https://drive.google.com/drive/folders/1gdzQFFJ6HC11Gvwun3PgRd-BJDPJu1hH?usp=sharing" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#i-folder"/></svg>Open tickets in Google Drive</a>
+    </div>
+    <div class="tablewrap"><table><tbody><tr><td class="b-date"><a href="#day-1">Sat 14 Nov</a><span>2:25 PM</span></td><td><strong>Singapore - OSAKA</strong></td><td class="b-ref"><button class="ref" type="button" data-copy="SQ 622"><span class="ref-t">SQ 622</span><span class="ref-c">Copy</span></button></td></tr><tr><td class="b-date"><a href="#day-2">Sun 15 Nov</a><span>8 PM</span></td><td><strong>SHOFU spring Reserved — Dinner included</strong><p>5500</p></td><td class="b-ref"></td></tr><tr><td class="b-date"><a href="#day-3">Mon 16 Nov</a><span>7:30 PM</span></td><td><strong>Oden klep</strong><p>7min from hotel</p></td><td class="b-ref"><button class="ref" type="button" data-copy="K2UG3Y"><span class="ref-t">K2UG3Y</span><span class="ref-c">Copy</span></button></td></tr><tr><td class="b-date"><a href="#day-4">Tue 17 Nov</a><span>11:30 AM</span></td><td><strong>Shimizu main store</strong><p>351-16 Masuya-cho, Higashiyama-ku, Kyoto City, Kyoto Prefecture 605-0826</p></td><td class="b-ref"><button class="ref" type="button" data-copy="261117-25983"><span class="ref-t">261117-25983</span><span class="ref-c">Copy</span></button></td></tr><tr><td class="b-date"><a href="#day-5">Wed 18 Nov</a><span>11:02 AM</span></td><td><strong>Sagano Train 小火车嵯峨 - 小火车龟冈</strong><p>富贵5号车厢-2A 富贵5号车厢-2B · JPY 1,760</p></td><td class="b-ref"><button class="ref" type="button" data-copy="I-261018-1416269"><span class="ref-t">I-261018-1416269</span><span class="ref-c">Copy</span></button></td></tr><tr><td class="b-date"><a href="#day-5">Wed 18 Nov</a><span>2:30 PM</span></td><td><strong>Sagano Train 小火车龟冈 - 小火车嵯峨</strong><p>2号车厢-14A 2号车厢-14B · JPY 1,760</p></td><td class="b-ref"><button class="ref" type="button" data-copy="I-261018-1416678"><span class="ref-t">I-261018-1416678</span><span class="ref-c">Copy</span></button></td></tr><tr><td class="b-date"><a href="#day-5">Wed 18 Nov</a><span>4 PM</span></td><td><strong>嵐山祐斎亭</strong><p>Arashiyama Nakaoshitacho</p></td><td class="b-ref"><button class="ref" type="button" data-copy="VJXRPH"><span class="ref-t">VJXRPH</span><span class="ref-c">Copy</span></button></td></tr><tr><td class="b-date"><a href="#day-9">Sun 22 Nov</a><span>6:30 PM</span></td><td><strong>sushi senzu honten — omakse</strong></td><td class="b-ref"><button class="ref" type="button" data-copy="MPAQSZS73K"><span class="ref-t">MPAQSZS73K</span><span class="ref-c">Copy</span></button></td></tr><tr><td class="b-date"><a href="#day-10">Mon 23 Nov</a><span>4:30 PM</span></td><td><strong>Street Kart Osaka Shop</strong><p>1-14-19 Minamihorie, Nishi Ward, Osaka, 550-0015, Japan<br>**Original International Driving Permits and the Original Passports</p></td><td class="b-ref"></td></tr><tr><td class="b-date"><a href="#day-11">Tue 24 Nov</a><span></span></td><td><strong>USJ</strong><p>rm1904</p></td><td class="b-ref"></td></tr><tr><td class="b-date"><a href="#day-12">Wed 25 Nov</a><span>4:50 PM</span></td><td><strong>OSAKA - Singapore</strong></td><td class="b-ref"><button class="ref" type="button" data-copy="SQ 621"><span class="ref-t">SQ 621</span><span class="ref-c">Copy</span></button></td></tr></tbody></table></div>
+  </section>
+
+  <section class="block" id="wishlist">
+    <h2 class="sec-title">Wishlist</h2>
+    <p class="sec-lead">Food, gifts and places to visit.</p>
+    <div class="wish"><div class="w-col"><h3>Food</h3><ul><li>Kyoto: Saryo Tesshin 茶寮哲心 **山药泥套餐</li><li>Onimaru (高岛屋gucci对面街道）**Onigiri&amp;红豆米糕</li><li>Clamp coffee ** 黄油土司</li></ul></div><div class="w-col"><h3>Gift</h3><ul><li>九条葱</li><li>hoho hojicha</li><li>CHERIE MAISON DU BISCUIT</li></ul></div><div class="w-col"><h3>Visit</h3><ul><li>Fushimi inari taisha 伏见稻荷大社</li><li>Kiyomizu-dera 清水寺</li></ul></div></div>
+  </section>
 </main>
 
-<nav class="tabs" role="tablist" id="tabs"></nav>
+<footer>
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path class="back" d="M0 70 C240 30 480 50 720 66 C960 30 1200 36 1440 56 V120 H0Z"/>
+    <path class="front" d="M0 96 C300 70 600 86 860 100 C1100 80 1300 84 1440 92 V120 H0Z"/>
+  </svg>
+  <p>Tick an item to mark it done. Ticks stay on this device only.</p>
+</footer>
 
 <script>
-/* ============================================================
-   language + tiny helpers
-   ============================================================ */
-let lang = "zh";
-const t = o => (o && o[lang] !== undefined) ? o[lang] : "";
-const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-
-/* ============================================================
-   trip data
-   ============================================================ */
-const UI = {
-  trip:{zh:"行程",en:"Trip"}, food:{zh:"美食",en:"Food"},
-  pack:{zh:"打包",en:"Pack"}, shop:{zh:"购物",en:"Shop"},
-  countdown:{zh:"距离出发",en:"Until departure"},
-  days:{zh:"天",en:"days"}, today:{zh:"今天出发！",en:"Departure day!"},
-  gone:{zh:"旅途中",en:"On the trip"},
-  hotel:{zh:"住宿",en:"Where we stay"},
-  before:{zh:"出发前",en:"Before we go"},
-  itinerary:{zh:"七天行程",en:"Seven days"},
-  itinerarySub:{zh:"每一站都写了地铁出口，照着走就对了",en:"Every stop is keyed to its subway exit — just follow the line"},
-  foodSub:{zh:"按区分类，配地铁出口和步行距离",en:"Sorted by neighbourhood, with exits and walking distance"},
-  packSub:{zh:"点一下打勾，装好一样勾一样",en:"Tap to tick off as each thing goes in the bag"},
-  shopSub:{zh:"美妆、代买、零食，一次买齐",en:"Beauty, gifts to buy for others, and snacks"},
-  eatHere:{zh:"这一区吃什么",en:"Eat around here"},
-  packed:{zh:"已装",en:"packed"}, bought:{zh:"已买",en:"bought"},
-  foot:{zh:"16–22.9.2026 · 新加坡 ⇌ 首尔",en:"16–22 Sep 2026 · Singapore ⇌ Seoul"}
-};
-
-const FLIGHTS = [
-  { tag:{zh:"去程",en:"Outbound"}, no:"SQ612", date:{zh:"9月16日 星期三",en:"Wed 16 Sep"},
-    from:{code:"SIN",term:{zh:"第 2 航厦",en:"Terminal 2"},time:"02:25"},
-    to:{code:"ICN",term:{zh:"第 1 航厦",en:"Terminal 1"},time:"09:50"} },
-  { tag:{zh:"回程",en:"Return"}, no:"SQ611", date:{zh:"9月22日 星期二",en:"Tue 22 Sep"},
-    from:{code:"ICN",term:{zh:"第 1 航厦",en:"Terminal 1"},time:"11:05"},
-    to:{code:"SIN",term:{zh:"第 2 航厦",en:"Terminal 2"},time:"16:35"} }
-];
-
-const HOTEL = [
-  { k:{zh:"酒店",en:"Hotel"}, v:{zh:"Fairfield by Marriott",en:"Fairfield by Marriott"} },
-  { k:{zh:"地铁",en:"Subway"}, v:{zh:"永登浦站 5 号出口",en:"Yeongdeungpo Stn, Exit 5"} },
-  { k:{zh:"机场巴士",en:"From ICN"}, v:{zh:"6007 号巴士从仁川直达酒店",en:"Airport bus 6007 runs straight to the hotel"} },
-  { k:{zh:"入住",en:"Check-in"}, v:{zh:"9月16日 下午 3 点",en:"3:00pm, 16 Sep"} },
-  { k:{zh:"退房",en:"Check-out"}, v:{zh:"9月22日 最迟早上 7 点准备好",en:"Ready to leave by 7:00am, 22 Sep"} }
-];
-
-const BEFORE = [
-  {zh:"9月15日 晚上 10 点从 JB 出发去机场",en:"Leave JB for the airport at 10pm on 15 Sep"},
-  {zh:"10 点前在芷荧家集合",en:"Meet at Zhiying's place before 10pm"},
-  {zh:"填写 SG Arrival Card",en:"Fill in the SG Arrival Card"},
-  {zh:"买好 roaming",en:"Buy a roaming plan"}
-];
-
-/* ---- food groups (shared between day cards and the Food tab) ---- */
-const FOOD = {
-  myeongdong:{
-    title:{zh:"明洞",en:"Myeongdong"},
-    items:[
-      {nm:{zh:"水剌酱蟹",en:"Sura Ganjang Gejang"}, alt:{zh:"或 真味食堂 / 乌达里家",en:"soy-marinated crab · or Jinmi Sikdang / Udarine"},
-       st:{zh:"明洞站",en:"Myeongdong Stn"}, ex:"8", walk:{zh:"步行 3 分钟",en:"3 min walk"}},
-      {nm:{zh:"明洞饺子",en:"Myeongdong Kyoja"}, alt:{zh:"",en:"the famous kalguksu & dumplings"},
-       st:{zh:"明洞站",en:"Myeongdong Stn"}, ex:"8", walk:{zh:"步行 3–5 分钟",en:"3–5 min walk"}},
-      {nm:{zh:"白钟元炸酱面 0410",en:"Paik Jong-won Jjajangmyeon 0410"}, alt:{zh:"",en:""},
-       st:{zh:"明洞站",en:"Myeongdong Stn"}, ex:"8", walk:{zh:"",en:""}},
-      {nm:{zh:"MOM'S TOUCH",en:"MOM'S TOUCH"}, alt:{zh:"",en:"fried chicken burgers"},
-       st:{zh:"乙支路入口站",en:"Euljiro 1-ga Stn"}, ex:"6", walk:{zh:"步行 10 分钟",en:"10 min walk"}},
-      {nm:{zh:"WOODAEPO BLACK 烤肉",en:"WOODAEPO BLACK"}, alt:{zh:"",en:"Korean BBQ"},
-       st:{zh:"乙支路入口站",en:"Euljiro 1-ga Stn"}, ex:"5", walk:{zh:"311 米",en:"311 m"}}
-    ]
-  },
-  seongsu:{
-    title:{zh:"圣水洞",en:"Seongsu-dong"},
-    items:[
-      {nm:{zh:"探光",en:"Tamgwang"}, alt:{zh:"出口右转，第一个路口左转，一直走",en:"turn right, left at the first junction, keep going"},
-       st:{zh:"圣水站",en:"Seongsu Stn"}, ex:"3", walk:{zh:"",en:""}},
-      {nm:{zh:"JOJO 刀削面",en:"JOJO knife-cut noodles"}, alt:{zh:"",en:""},
-       st:{zh:"圣水站",en:"Seongsu Stn"}, ex:"2", walk:{zh:"步行 1–2 分钟",en:"1–2 min walk"}},
-      {nm:{zh:"MAMAN GELATO",en:"MAMAN GELATO"}, alt:{zh:"",en:""},
-       st:{zh:"圣水站",en:"Seongsu Stn"}, ex:"3", walk:{zh:"步行 3 分钟",en:"3 min walk"}},
-      {nm:{zh:"STANDARD BREAD 土司",en:"STANDARD BREAD"}, alt:{zh:"",en:"toast & bakes"},
-       st:{zh:"圣水站",en:"Seongsu Stn"}, ex:"3", walk:{zh:"步行约 10 分钟",en:"about 10 min walk"}}
-    ]
-  },
-  hongdae:{
-    title:{zh:"弘大 · 延南洞",en:"Hongdae & Yeonnam-dong"},
-    items:[
-      {nm:{zh:"PAROLE & LANGUE 玉米派",en:"PAROLE & LANGUE"}, alt:{zh:"",en:"corn pie"},
-       st:{zh:"弘大入口站",en:"Hongik Univ Stn"}, ex:"3", walk:{zh:"约 800 米",en:"about 800 m"}},
-      {nm:{zh:"HOTEL DE GGOOD 玫瑰奶油意面",en:"HOTEL DE GGOOD"}, alt:{zh:"",en:"rosé cream pasta"},
-       st:{zh:"弘大入口站",en:"Hongik Univ Stn"}, ex:"3", walk:{zh:"步行 9–10 分钟",en:"9–10 min walk"}},
-      {nm:{zh:"SOSINISSO 辣奶油炖排骨",en:"SOSINISSO"}, alt:{zh:"",en:"spicy cream braised ribs"},
-       st:{zh:"新村站",en:"Sinchon Stn"}, ex:"1", walk:{zh:"约 400 米",en:"about 400 m"}}
-    ]
-  },
-  anywhere:{
-    title:{zh:"其他想吃的",en:"Wherever we end up"},
-    items:[
-      {nm:{zh:"JEJU ROOFTOP BLACK BBQ",en:"JEJU ROOFTOP BLACK BBQ"}, alt:{zh:"",en:"rooftop pork BBQ"},
-       st:{zh:"狎鸥亭罗德奥站",en:"Apgujeong Rodeo Stn"}, ex:"5", walk:{zh:"步行 6 分钟",en:"6 min walk"}},
-      {nm:{zh:"清潭嫩豆腐 总店",en:"Cheongdam Sundubu (main branch)"}, alt:{zh:"",en:"soft tofu stew"},
-       st:{zh:"狎鸥亭罗德奥站",en:"Apgujeong Rodeo Stn"}, ex:"5", walk:{zh:"345 米",en:"345 m"}},
-      {nm:{zh:"万倍阿里郎 菜包肉",en:"Manbae Arirang"}, alt:{zh:"",en:"pork ssam"},
-       st:{zh:"9 号线 登村站",en:"Deungchon Stn (Line 9)"}, ex:"7", walk:{zh:"步行 5 分钟",en:"5 min walk"}},
-      {nm:{zh:"PIZZA NEVER SLEEP",en:"PIZZA NEVER SLEEP"}, alt:{zh:"",en:""},
-       st:{zh:"合井站",en:"Hapjeong Stn"}, ex:"6", walk:{zh:"",en:""}},
-      {nm:{zh:"PURADAK 炸鸡",en:"PURADAK fried chicken"}, alt:{zh:"IU 代言",en:"the one IU endorses"},
-       st:{zh:"",en:""}, ex:"", walk:{zh:"",en:""}},
-      {nm:{zh:"SULBING 雪冰",en:"SULBING"}, alt:{zh:"",en:"bingsu"},
-       st:{zh:"",en:""}, ex:"", walk:{zh:"",en:""}},
-      {nm:{zh:"MILESTONE 咖啡",en:"MILESTONE coffee"}, alt:{zh:"汉南洞，咖啡好喝",en:"in Hannam-dong, the coffee is good"},
-       st:{zh:"汉江镇站",en:"Hangangjin Stn"}, ex:"3", walk:{zh:"",en:""}}
-    ]
-  }
-};
-
-/* ---- the seven days ---- */
-const DAYS = [
-  { n:1, date:{zh:"9月16日 · 星期三",en:"Wed 16 Sep"},
-    title:{zh:"落地 · 明洞",en:"Land · Myeongdong"},
-    plan:[
-      {zh:"早上 10 点左右到仁川机场",en:"Land at Incheon around 10am"},
-      {zh:"玩 HiKR 快闪小游戏抽礼品",en:"Play the HiKR pop-up game for a prize"},
-      {zh:"领国家遗产访问活动",en:"Collect the National Heritage visit pass"},
-      {zh:"饿的话先在机场吃点东西",en:"Grab something at the airport if we're hungry"},
-      {zh:"搭 6007 巴士直奔酒店，<b>3pm check in</b>",en:"Bus 6007 straight to the hotel, <b>check in at 3pm</b>"},
-      {zh:"放下行李去明洞走走",en:"Drop the bags, then wander Myeongdong"},
-      {zh:"首尔塔看夜景（可去可不去），或买宵夜回酒店",en:"N Seoul Tower for the night view (optional), or take supper back to the room"}
-    ],
-    note:{zh:"去明洞乐天百货 1F，GUCCI 对面领卡 — 乙支路入口站 7 / 8 号出口",
-          en:"Collect the card at Lotte Department Store 1F, opposite GUCCI — Euljiro 1-ga Stn, Exit 7 or 8"},
-    food:"myeongdong" },
-
-  { n:2, date:{zh:"9月17日 · 星期四",en:"Thu 17 Sep"},
-    title:{zh:"圣水洞 · 弘大延南",en:"Seongsu · Hongdae"},
-    plan:[
-      {zh:"圣水洞一日游",en:"A whole day in Seongsu-dong"},
-      {zh:"晚上转去弘大 / 延南洞",en:"Move on to Hongdae and Yeonnam-dong in the evening"},
-      {zh:"<b>7pm 看 IU 演唱会电影</b>",en:"<b>7pm — IU concert film</b>"},
-      {zh:"Kelvin 和 Feipo 自由活动",en:"Kelvin and Feipo do their own thing"}
-    ],
-    note:{zh:"延南洞就在弘大入口站 3 号出口",en:"Yeonnam-dong is right out of Hongik Univ Stn, Exit 3"},
-    food:["seongsu","hongdae"] },
-
-  { n:3, date:{zh:"9月18日 · 星期五",en:"Fri 18 Sep"},
-    title:{zh:"色彩鉴定 · 证件照 · 汗蒸",en:"Colour analysis · ID photos · Spa"},
-    plan:[
-      {zh:"<b>10am Muu.i 色彩鉴定 + 化妆</b> — 江南区厅站 1 号出口 100 米",en:"<b>10am — Muu.i colour analysis + makeup</b> — Gangnam-gu Office Stn, Exit 1, 100 m"},
-      {zh:"<b>3:30pm Sihyunhada 江南拍证件照</b> — 驿三站 4 号出口 500 米",en:"<b>3:30pm — Sihyunhada ID photos, Gangnam</b> — Yeoksam Stn, Exit 4, 500 m"},
-      {zh:"下午大家自由活动，晚餐各自吃",en:"Free afternoon, dinner on our own"},
-      {zh:"回酒店集合，<b>9pm 汗蒸</b> — The Park Spa Land，永登浦区厅站 2 号出口",en:"Meet back at the hotel, <b>9pm jjimjilbang</b> — The Park Spa Land, Yeongdeungpo-gu Office Stn, Exit 2"}
-    ],
-    note:{zh:"定金已付：Muu.i 100,000 won、Sihyunhada 70,000 won。去驿三站有斜坡，搭 Uber 比较好。",
-          en:"Deposits already paid: 100,000 won to Muu.i, 70,000 won to Sihyunhada. There's a slope near Yeoksam — take an Uber."} },
-
-  { n:4, date:{zh:"9月19日 · 星期六",en:"Sat 19 Sep"},
-    title:{zh:"爱宝乐园",en:"Everland"},
-    plan:[
-      {zh:"整天在爱宝乐园",en:"The whole day at Everland"},
-      {zh:"江南站 5 / 6 号出口过马路到中央巴士站，搭 5002 或 5002B",en:"Gangnam Stn Exit 5 or 6, cross the road to the central bus stop, take bus 5002 or 5002B"}
-    ],
-    note:{zh:"门票要先订！快通可以在 Klook 上买。",en:"Book the tickets in advance — the Q-Pass is on Klook."} },
-
-  { n:5, date:{zh:"9月20日 · 星期日",en:"Sun 20 Sep"},
-    title:{zh:"望远 · 汉南 · 汉江",en:"Mangwon · Hannam · Han River"},
-    plan:[
-      {zh:"早上望远市场 — 望远站 2 号出口，步行 5–10 分钟",en:"Morning at Mangwon Market — Mangwon Stn, Exit 2, 5–10 min walk"},
-      {zh:"汉南洞 — 汉江镇站 3 号出口，MILESTONE 咖啡好喝",en:"Hannam-dong — Hangangjin Stn, Exit 3. MILESTONE has good coffee"},
-      {zh:"梨泰院走走",en:"A wander through Itaewon"},
-      {zh:"晚上汉江吃泡面野餐 chill — 汝矣渡口站 2 / 3 号出口",en:"Ramyeon picnic by the Han River at night — Yeouinaru Stn, Exit 2 or 3"}
-    ],
-    note:{zh:"首尔蓬皮杜艺术中心 · 毕加索展（周二至周日 10am–6pm）— 汝矣渡口站 1 号出口步行 3 分钟到公交站，换 5633 或 261 巴士，坐 2 站",
-          en:"Centre Pompidou Seoul · Picasso exhibition (Tue–Sun, 10am–6pm) — Yeouinaru Stn Exit 1, 3 min to the bus stop, then bus 5633 or 261 for 2 stops"} },
-
-  { n:6, date:{zh:"9月21日 · 星期一",en:"Mon 21 Sep"},
-    title:{zh:"自由活动 · 最后冲刺",en:"Free day · Final sprint"},
-    plan:[
-      {zh:"Feipo 去做项目",en:"Feipo has a project to work on"},
-      {zh:"其他人自由活动",en:"Everyone else is free"},
-      {zh:"最后冲刺，该买买该花花",en:"Last chance to buy everything on the list"}
-    ] },
-
-  { n:7, date:{zh:"9月22日 · 星期二",en:"Tue 22 Sep"},
-    title:{zh:"回家",en:"Fly home"},
-    plan:[
-      {zh:"最迟早上 7 点 check out 准备好",en:"Be checked out and ready by 7am"},
-      {zh:"11:05am 的飞机",en:"Flight departs 11:05am"},
-      {zh:"预计下午 4:35 到新加坡",en:"Into Singapore around 4:35pm"}
-    ] }
-];
-
-/* ---- packing ---- */
-const PACK = [
-  { id:"big", title:{zh:"大行李",en:"Check-in luggage"}, items:[
-    {zh:"毛巾、枕头被",en:"Towel, pillow and blanket"},
-    {zh:"睡衣 2 套 / 衣服 6–7 套",en:"2 sets of pyjamas, 6–7 outfits"},
-    {zh:"内衣裤、袜子",en:"Underwear and socks"},
-    {zh:"洗发水、牙刷牙膏、牙套、洗脸霜",en:"Shampoo, toothbrush, toothpaste, retainer, face wash"},
-    {zh:"护肤品、化妆品、首饰",en:"Skincare, makeup, jewellery"},
-    {zh:"插座、cable、自拍架",en:"Adapter, cables, selfie stick"},
-    {zh:"环保袋 + 装脏衣服的 plastic",en:"Tote bag and a plastic bag for dirty clothes"},
-    {zh:"野餐垫、雨伞",en:"Picnic mat, umbrella"}
-  ]},
-  { id:"small", title:{zh:"随身小包",en:"Carry-on"}, items:[
-    {zh:"墨镜、眼镜、帽子",en:"Sunglasses, glasses, hat"},
-    {zh:"马币、韩元、卡、符、交通卡",en:"Ringgit, won, cards, amulet, transport card"},
-    {zh:"护照、文件",en:"Passport and documents"},
-    {zh:"电话 x2、powerbank、耳机、相机",en:"Two phones, powerbank, earphones, camera"},
-    {zh:"tissue + wet tissue",en:"Tissue and wet wipes"},
-    {zh:"水瓶",en:"Water bottle"}
-  ]}
-];
-
-/* ---- shopping ---- */
-const SHOP = [
-  { id:"oy", title:{zh:"Olive Young",en:"Olive Young"}, items:[
-    {zh:"TORRIDEN / ABIB / 3 号面膜 / MEDIHEAL 面膜",en:"TORRIDEN, ABIB, the No.3 mask, MEDIHEAL masks"},
-    {zh:"BIODANCE 包装棉片",en:"BIODANCE packaged cotton pads"},
-    {zh:"内服橄榄汁（BBLAB / LATIB）",en:"Drinkable olive shots (BBLAB / LATIB)"},
-    {zh:"DALBA 紫色 TONE UP 防晒",en:"DALBA purple tone-up sunscreen"},
-    {zh:"FRANZ / CAREPLUS 痘痘贴 + 黑头贴",en:"FRANZ / CAREPLUS pimple and blackhead patches"},
-    {zh:"LILYBYRED 睫毛膏 01",en:"LILYBYRED mascara in 01"},
-    {zh:"FIXX 定妆喷雾",en:"FIXX setting spray"},
-    {zh:"BEPLAIN 洗脸霜",en:"BEPLAIN cleanser"},
-    {zh:"REJU-ALL PD3（PDRN）",en:"REJU-ALL PD3 (PDRN)"},
-    {zh:"DASIQUE 07 腮红",en:"DASIQUE blush in 07"},
-    {zh:"KAHI MULTI BALM 妆前膏",en:"KAHI multi balm primer"},
-    {zh:"AQUASQUALANE 妆前",en:"AQUASQUALANE primer"},
-    {zh:"JUDYDOLL 眼线笔",en:"JUDYDOLL eyeliner"},
-    {zh:"WAKEMAKE 修容盘",en:"WAKEMAKE contour palette"},
-    {zh:"FILLIMILLI 睫毛夹、化妆刷",en:"FILLIMILLI lash curler and brushes"},
-    {zh:"DALBA 散粉棒",en:"DALBA powder stick"},
-    {zh:"MAGIC SEALER",en:"MAGIC SEALER"},
-    {zh:"VODANA 电发棒",en:"VODANA curling wand"}
-  ]},
-  { id:"else", title:{zh:"其他",en:"Elsewhere"}, items:[
-    {zh:"ARTBOX 可可爱爱的小文具",en:"Cute stationery from ARTBOX"},
-    {zh:"帽子：ONGO / EMIS / ALO",en:"Hats: ONGO, EMIS, ALO"}
-  ]},
-  { id:"forothers", title:{zh:"代买",en:"Buying for others"}, items:[
-    {zh:"姐姐的 ADIDAS",en:"ADIDAS for jiejie"},
-    {zh:"燕慈的 MARITHE / MARDI",en:"MARITHE / MARDI for Yanci"},
-    {zh:"大头的面膜、棉片、ALO 帽子",en:"Masks, cotton pads and an ALO hat for Datou"},
-    {zh:"妈咪的气垫 JUNG SAEM MOOL",en:"JUNG SAEM MOOL cushion for Mummy"},
-    {zh:"女佣的 WANNA ONE 周边",en:"WANNA ONE merch for Nvyong"}
-  ]},
-  { id:"snack", title:{zh:"零食",en:"Snacks"}, items:[
-    {zh:"HBAF 杏仁（Lotte Mart）",en:"HBAF almonds (Lotte Mart)"},
-    {zh:"BINCH 饼干（Lotte Mart）",en:"BINCH biscuits (Lotte Mart)"},
-    {zh:"黑松露紫菜（Lotte Mart）",en:"Black truffle seaweed (Lotte Mart)"},
-    {zh:"HERSHEY 巧克力饼干（Lotte Mart）",en:"HERSHEY chocolate biscuits (Lotte Mart)"},
-    {zh:"CROWN 威化饼（Lotte Mart）",en:"CROWN wafers (Lotte Mart)"},
-    {zh:"DUBAI 巧克力（CU）",en:"Dubai chocolate (CU)"},
-    {zh:"BRICKSAN — 敲击好吃，买多多回家",en:"BRICKSAN — seriously good, buy a lot"}
-  ]}
-];
-
-/* ============================================================
-   checklist state
-   ============================================================ */
-let ticks = {};
-async function loadTicks(){
-  try{
-    if(window.storage){
-      const r = await window.storage.get("seoul2026:ticks");
-      if(r && r.value) ticks = JSON.parse(r.value);
+(function(){
+  /* ---------- today ---------- */
+  var now = new Date();
+  var iso = now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,"0") + "-" + String(now.getDate()).padStart(2,"0");
+  var btn = document.getElementById("todayBtn");
+  document.querySelectorAll(".day").forEach(function(d, i){
+    if (d.dataset.date === iso){
+      d.classList.add("is-today");
+      var chip = document.querySelector('.chip[data-day="' + (i+1) + '"]');
+      if (chip) chip.classList.add("is-today");
+      btn.href = "#day-" + (i+1);
+      btn.textContent = "Go to today, Day " + (i+1);
+      btn.classList.add("show");
     }
-  }catch(e){ /* first run, nothing saved yet */ }
-}
-async function saveTicks(){
-  try{ if(window.storage) await window.storage.set("seoul2026:ticks", JSON.stringify(ticks)); }catch(e){}
-}
-
-/* ============================================================
-   renderers
-   ============================================================ */
-function flightHTML(f){
-  return `<div class="leg">
-    <div class="legtop"><span>${esc(t(f.tag))} · ${esc(t(f.date))}</span><b>${f.no}</b></div>
-    <div class="route">
-      <div class="port">
-        <div class="code">${f.from.code}</div>
-        <div class="term">${esc(t(f.from.term))}</div>
-        <div class="tm">${f.from.time}</div>
-      </div>
-      <div class="dots"></div>
-      <div class="port right">
-        <div class="code">${f.to.code}</div>
-        <div class="term">${esc(t(f.to.term))}</div>
-        <div class="tm">${f.to.time}</div>
-      </div>
-    </div>
-  </div>`;
-}
-
-function countdownHTML(){
-  const dep = new Date("2026-09-15T22:00:00+08:00");
-  const now = new Date();
-  const d = Math.ceil((dep - now) / 86400000);
-  let right;
-  if(d > 1) right = `${d} ${t(UI.days)}`;
-  else if(d === 1) right = lang==="zh" ? "明天" : "tomorrow";
-  else if(d === 0) right = t(UI.today);
-  else right = t(UI.gone);
-  return `<div class="countdown"><span>${esc(t(UI.countdown))}</span><span>${esc(right)}</span></div>`;
-}
-
-function eatHTML(item, i){
-  const bits = [];
-  if(t(item.st)) bits.push(`<span>${esc(t(item.st))}</span>`);
-  if(item.ex) bits.push(`<span class="exit">${lang==="zh"?"出口":"Exit"} ${item.ex}</span>`);
-  if(t(item.walk)) bits.push(`<span class="walk">${esc(t(item.walk))}</span>`);
-  return `<li class="eat">
-    <span class="num">${i+1}</span>
-    <span class="body">
-      <span class="nm">${esc(t(item.nm))}</span>
-      ${t(item.alt) ? `<span class="alt">${esc(t(item.alt))}</span>` : ""}
-      ${bits.length ? `<span class="way">${bits.join("")}</span>` : ""}
-    </span>
-  </li>`;
-}
-
-function groupHTML(key){
-  const g = FOOD[key];
-  return `<div class="card foodgroup">
-    <div class="cardtitle"><span class="dot"></span>${esc(t(g.title))}</div>
-    <ul>${g.items.map(eatHTML).join("")}</ul>
-  </div>`;
-}
-
-function dayHTML(d){
-  const foods = d.food ? (Array.isArray(d.food) ? d.food : [d.food]) : [];
-  return `<article class="day">
-    <span class="stop">${d.n}</span>
-    <div class="dayhead">
-      <span class="date">${esc(t(d.date))}</span>
-      <h3>${esc(t(d.title))}</h3>
-    </div>
-    <div class="card">
-      <ul class="plan">${d.plan.map(p=>`<li>${t(p)}</li>`).join("")}</ul>
-      ${d.note ? `<div class="note"><span class="lab">${lang==="zh"?"记得":"Remember"}</span>${esc(t(d.note))}</div>` : ""}
-    </div>
-    ${foods.map(k=>{
-      const g = FOOD[k];
-      return `<div class="card foodgroup">
-        <div class="cardtitle"><span class="dot"></span>${esc(t(UI.eatHere))} · ${esc(t(g.title))}</div>
-        <ul>${g.items.map(eatHTML).join("")}</ul>
-      </div>`;
-    }).join("")}
-  </article>`;
-}
-
-function checkHTML(gid, i, item, done){
-  return `<li class="check" tabindex="0" role="checkbox" aria-checked="${done?"true":"false"}"
-      data-key="${gid}:${i}" data-on="${done?1:0}">
-    <span class="box"><svg viewBox="0 0 14 14"><polyline points="2,7.5 5.5,11 12,3.5"/></svg></span>
-    <span class="txt">${esc(t(item))}</span>
-  </li>`;
-}
-
-function listGroupHTML(g, verb){
-  const done = g.items.filter((_,i)=>ticks[g.id+":"+i]).length;
-  return `<div class="card">
-    <div class="cardtitle"><span class="dot"></span>${esc(t(g.title))}
-      <span class="progress">${done}/${g.items.length} ${esc(t(verb))}</span></div>
-    <ul>${g.items.map((it,i)=>checkHTML(g.id,i,it,!!ticks[g.id+":"+i])).join("")}</ul>
-  </div>`;
-}
-
-function render(){
-  document.documentElement.lang = lang;
-
-  /* Trip */
-  document.getElementById("p-trip").innerHTML = `
-    <div class="strip">${FLIGHTS.map(flightHTML).join("")}${countdownHTML()}</div>
-    <h2 class="sechead" style="margin-top:22px">${lang==="zh"?"住宿":"Where we stay"}
-      <span class="sub">${lang==="zh"?"永登浦，机场巴士直达门口":"Yeongdeungpo — the airport bus stops at the door"}</span></h2>
-    <div class="card">${HOTEL.map(r=>`<div class="kv"><span class="k">${esc(t(r.k))}</span><span class="v">${esc(t(r.v))}</span></div>`).join("")}</div>
-    <h2 class="sechead">${esc(t(UI.before))}</h2>
-    <div class="card"><ul class="plan">${BEFORE.map(b=>`<li>${esc(t(b))}</li>`).join("")}</ul></div>
-    <h2 class="sechead">${esc(t(UI.itinerary))}<span class="sub">${esc(t(UI.itinerarySub))}</span></h2>
-    ${DAYS.map(dayHTML).join("")}
-  `;
-
-  /* Food */
-  document.getElementById("p-food").innerHTML = `
-    <h2 class="sechead">${lang==="zh"?"吃的清单":"The eating list"}<span class="sub">${esc(t(UI.foodSub))}</span></h2>
-    ${Object.keys(FOOD).map(groupHTML).join("")}
-  `;
-
-  /* Pack */
-  document.getElementById("p-pack").innerHTML = `
-    <h2 class="sechead">${lang==="zh"?"要带的东西":"What to bring"}<span class="sub">${esc(t(UI.packSub))}</span></h2>
-    ${PACK.map(g=>listGroupHTML(g, UI.packed)).join("")}
-  `;
-
-  /* Shop */
-  document.getElementById("p-shop").innerHTML = `
-    <h2 class="sechead">${lang==="zh"?"必买清单":"The shopping list"}<span class="sub">${esc(t(UI.shopSub))}</span></h2>
-    ${SHOP.map(g=>listGroupHTML(g, UI.bought)).join("")}
-  `;
-
-  document.getElementById("foot").textContent = t(UI.foot);
-  renderTabs();
-}
-
-/* ---- bottom navigation ---- */
-const TABS = [
-  { id:"trip", label:UI.trip, icon:'<path d="M4 20V6a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 4v5h5"/><path d="M8 13h7M8 17h5"/>' },
-  { id:"food", label:UI.food, icon:'<path d="M5 3v8a3 3 0 0 0 6 0V3"/><path d="M8 11v10"/><path d="M18 3c-1.7 1.6-2.5 3.6-2.5 6 0 1.7.8 2.8 2.5 3v9"/>' },
-  { id:"pack", label:UI.pack, icon:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M9 7V4h6v3"/><path d="M3 13h18"/>' },
-  { id:"shop", label:UI.shop, icon:'<path d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8Z"/><path d="M9 11V6a3 3 0 0 1 6 0v5"/>' }
-];
-let active = "trip";
-function renderTabs(){
-  document.getElementById("tabs").innerHTML = TABS.map(tb=>`
-    <button role="tab" data-tab="${tb.id}" aria-selected="${active===tb.id}">
-      <svg class="ic" viewBox="0 0 24 24">${tb.icon}</svg>
-      <span class="lb">${esc(t(tb.label))}</span>
-    </button>`).join("");
-}
-function showTab(id){
-  active = id;
-  TABS.forEach(tb => document.getElementById("p-"+tb.id).hidden = (tb.id !== id));
-  renderTabs();
-  window.scrollTo({top:0, behavior:"instant"});
-}
-
-/* ---- events ---- */
-document.getElementById("tabs").addEventListener("click", e=>{
-  const b = e.target.closest("button[data-tab]");
-  if(b) showTab(b.dataset.tab);
-});
-document.body.addEventListener("click", e=>{
-  const c = e.target.closest(".check");
-  if(c) toggle(c);
-});
-document.body.addEventListener("keydown", e=>{
-  if(e.key===" " || e.key==="Enter"){
-    const c = e.target.closest(".check");
-    if(c){ e.preventDefault(); toggle(c); }
+  });
+  if (!btn.classList.contains("show")){
+    var start = new Date(2026, 10, 14), diff = Math.ceil((start - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
+    if (diff > 0){ btn.textContent = diff === 1 ? "Starts tomorrow" : "Starts in " + diff + " days"; btn.classList.add("show"); }
   }
-});
-function toggle(el){
-  const on = el.dataset.on === "1";
-  el.dataset.on = on ? "0" : "1";
-  el.setAttribute("aria-checked", on ? "false" : "true");
-  ticks[el.dataset.key] = !on;
-  if(!ticks[el.dataset.key]) delete ticks[el.dataset.key];
-  const card = el.closest(".card");
-  const p = card.querySelector(".progress");
-  if(p){
-    const total = card.querySelectorAll(".check").length;
-    const done = card.querySelectorAll('.check[data-on="1"]').length;
-    p.textContent = `${done}/${total} ` + p.textContent.split(" ").slice(1).join(" ");
-  }
-  saveTicks();
-}
-function setLang(l){
-  lang = l;
-  document.getElementById("btn-zh").setAttribute("aria-pressed", l==="zh");
-  document.getElementById("btn-en").setAttribute("aria-pressed", l==="en");
-  render();
-  showTab(active);
-}
-document.getElementById("btn-zh").addEventListener("click", ()=>setLang("zh"));
-document.getElementById("btn-en").addEventListener("click", ()=>setLang("en"));
 
-/* ---- go ---- */
-loadTicks().then(()=>{ render(); showTab("trip"); });
+  /* ---------- done ticks ---------- */
+  var KEY = "japan-2026-done", done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e){ done = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(done)); } catch(e){} }
+  document.querySelectorAll(".tick").forEach(function(t){
+    var id = t.dataset.id, li = t.closest(".entry");
+    function paint(){ var on = !!done[id]; t.setAttribute("aria-pressed", on); t.setAttribute("aria-label", on ? "Mark as not done" : "Mark as done"); li.classList.toggle("done", on); }
+    paint();
+    t.addEventListener("click", function(){ if (done[id]) delete done[id]; else done[id] = 1; save(); paint(); });
+  });
+
+  /* ---------- copy references ---------- */
+  document.querySelectorAll(".ref").forEach(function(b){
+    b.addEventListener("click", function(){
+      var text = b.dataset.copy, label = b.querySelector(".ref-c");
+      function ok(){ b.classList.add("copied"); label.textContent = "Copied"; setTimeout(function(){ b.classList.remove("copied"); label.textContent = "Copy"; }, 1600); }
+      function fallback(){
+        var r = document.createRange(); r.selectNodeContents(b.querySelector(".ref-t"));
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { if (document.execCommand("copy")) ok(); else label.textContent = "Selected"; } catch(e){ label.textContent = "Selected"; }
+      }
+      try { navigator.clipboard.writeText(text).then(ok, fallback); } catch(e){ fallback(); }
+    });
+  });
+
+  /* ---------- live weather (Open-Meteo, free, no key) ---------- */
+  var PLACES = [
+    {id:"kobe", name:"Kobe", lat:34.6913, lon:135.1830},
+    {id:"arima", name:"Arima Onsen", lat:34.7975, lon:135.2475},
+    {id:"kyoto", name:"Kyoto", lat:35.0036, lon:135.7594},
+    {id:"arashiyama", name:"Arashiyama", lat:35.0094, lon:135.6668},
+    {id:"uji", name:"Uji", lat:34.8844, lon:135.7997},
+    {id:"nara", name:"Nara", lat:34.6851, lon:135.8048},
+    {id:"osaka", name:"Osaka", lat:34.6826, lon:135.5023}
+  ];
+  function wx(code){
+    if (code === 0) return ["i-sun","Clear"];
+    if (code === 1) return ["i-part","Mostly clear"];
+    if (code === 2) return ["i-part","Partly cloudy"];
+    if (code === 3) return ["i-cloud","Cloudy"];
+    if (code === 45 || code === 48) return ["i-fog","Fog"];
+    if (code >= 51 && code <= 57) return ["i-rain","Drizzle"];
+    if (code >= 61 && code <= 67) return ["i-rain","Rain"];
+    if (code >= 71 && code <= 77) return ["i-snow","Snow"];
+    if (code >= 80 && code <= 82) return ["i-rain","Showers"];
+    if (code === 85 || code === 86) return ["i-snow","Snow showers"];
+    if (code >= 95) return ["i-storm","Thunderstorm"];
+    return ["i-cloud","—"];
+  }
+  function icon(id){ return '<svg aria-hidden="true"><use href="#' + id + '"/></svg>'; }
+  function r(n){ return Math.round(n) + "°"; }
+  var grid = document.getElementById("wxGrid"), meta = document.getElementById("wxMeta");
+
+  function load(){
+    var url = "https://api.open-meteo.com/v1/forecast?latitude=" + PLACES.map(function(p){return p.lat}).join(",") +
+      "&longitude=" + PLACES.map(function(p){return p.lon}).join(",") +
+      "&current=temperature_2m,apparent_temperature,weather_code" +
+      "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
+      "&timezone=Asia%2FTokyo&past_days=7&forecast_days=16";
+    fetch(url).then(function(res){ if (!res.ok) throw new Error(res.status); return res.json(); }).then(function(data){
+      if (!Array.isArray(data)) data = [data];
+      var by = {};
+      PLACES.forEach(function(p, i){ by[p.id] = data[i]; });
+
+      grid.innerHTML = PLACES.map(function(p){
+        var c = by[p.id] && by[p.id].current; if (!c) return "";
+        var w = wx(c.weather_code);
+        return '<article class="wx-card"><h3>' + p.name + '</h3><div class="wx-now">' + icon(w[0]) +
+          '<span class="wx-t">' + r(c.temperature_2m) + '</span></div><div class="wx-c">' + w[1] + '<br>Feels like ' + r(c.apparent_temperature) + '</div></article>';
+      }).join("");
+      var t = by.kyoto && by.kyoto.current && by.kyoto.current.time;
+      meta.textContent = t ? "Updated " + t.slice(11,16) + " Japan time. Refreshes every 15 minutes." : "";
+
+      document.querySelectorAll(".wx-day").forEach(function(el){
+        var date = el.dataset.date;
+        el.innerHTML = el.dataset.places.split(",").map(function(id){
+          var p = PLACES.filter(function(x){return x.id === id})[0], d = by[id] && by[id].daily;
+          var k = d ? d.time.indexOf(date) : -1;
+          if (k < 0) return '<div class="wx-pill">' + icon("i-cloud") + '<div><b>' + p.name + '</b><span>Forecast shows up closer to the day</span></div></div>';
+          var w = wx(d.weather_code[k]), rain = d.precipitation_probability_max[k];
+          return '<div class="wx-pill">' + icon(w[0]) + '<div><b>' + p.name + '</b> ' + r(d.temperature_2m_max[k]) + ' / ' + r(d.temperature_2m_min[k]) +
+            '<span>' + w[1] + (rain != null ? ", " + rain + "% chance of rain" : "") + '</span></div></div>';
+        }).join("");
+      });
+    }).catch(function(){
+      grid.innerHTML = '<p class="wx-msg">The weather couldn’t load. Check your internet connection, then reload the page.</p>';
+      meta.textContent = "";
+    });
+  }
+  load();
+  setInterval(load, 15 * 60 * 1000);
+})();
 </script>
 </body>
 </html>
